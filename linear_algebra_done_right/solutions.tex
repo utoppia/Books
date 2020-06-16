@@ -1,0 +1,116 @@
+%!TEX program = xelatex
+
+\documentclass[lang=en, 11pt]{elegantpaper}
+
+\newcommand{\ie}{\textit{i.e.}}
+\newcommand{\eg}{\textit{e.g.}}
+
+% Some self-cumstomed symbols which will be used in this article
+\newcommand{\R}{\mathrm{R}}
+\newcommand{\N}{\mathrm{N}}
+\newcommand{\mC}{\mathrm{C}}
+\newcommand{\F}{\mathrm{F}}
+\newcommand{\V}{\mathrm{V}}
+\newcommand{\M}{\mathcal{M}}
+
+\newcommand{\Null}[1]{\text{null}~#1}
+\newcommand{\range}[1]{\text{range}~#1}
+\newcommand{\lmap}[2]{\mathcal{L}(#1, #2)}
+\newcommand{\poly}[1]{\mathcal{P}(#1)}
+
+\newcommand{\sol}{\textcolor{main}{\textbf{Solution}}}
+\newcommand{\yes}{\textcolor{blue!60}{\textbf{$\checkmark$~YES}}}
+\newcommand{\no}{\textcolor{red!80}{\textbf{$\times$~NO}}}
+\newcommand{\property}{\itshape}
+
+\newcommand{\norm}[1]{\left\lVert#1\right\lVert}
+\newcommand{\mspan}[1]{\text{span}\left(#1\right)} % math: span operation in vectors
+\newcommand{\avg}{\mathbf{avg}}
+\newcommand{\rms}{\mathbf{rms}}
+\newcommand{\sign}{\mathbf{sign}}
+\newcommand{\std}{\mathbf{std}}
+\newcommand{\diag}{\mathbf{diag}}
+\newcommand{\tr}{\mathbf{tr}}
+\newcommand{\one}{\mathbf{1}}
+
+
+%\newcommand{\dfrac}{\displaystyle\frac}
+\usepackage{tikz}
+\usetikzlibrary{calc, shapes, positioning, arrows, through, angles, intersections, 3d}
+\usepackage{titlesec}
+%\titleformat{\paragraph}[hang]{\normalfont\normalsize}{\theparagraph.}{1em}{}
+\usepackage[most]{tcolorbox}
+\usepackage{fontspec}
+\usepackage{amsmath}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{tocloft}
+
+\linespread{1.35}
+\setlist[1]{itemsep=5pt}
+\renewcommand{\arraystretch}{0.74}
+\renewcommand{\thefigure}{\arabic{section}.\arabic{figure}}
+\numberwithin{equation}{section}
+
+\newfontface\textfontface{Courier}[
+    %UprightFont = Courier Regular,
+    ItalicFont = Courier Oblique,
+    BoldFont = Courier Bold,
+    BoldItalicFont = Courier Bold Oblique
+]
+
+
+\newtcolorbox[auto counter, number within=section]{solution}[1][]{
+    enhanced,
+    breakable,
+    fonttitle = \bfseries,
+    colupper = blue!80,
+    title = {Solution: },
+    #1
+}
+
+
+\title{Solutions}
+%\subtitle{Introduction to Applied Linear Algebra}
+\author{utoppia}
+
+\date{\today}
+\version{1.0}
+
+\cftsetindents{subsection}{0em}{4em}
+
+\begin{document}
+    \setmainfont{Courier}
+    \pagenumbering{gobble}
+    \begin{center}
+        \vspace{10em}
+        \huge \textbf{Solution for Exercises in}
+    \end{center}
+    \begin{flushright}
+        \Large --- Linear Algebra Done Right
+    \end{flushright}
+    \vspace{30em}
+    \begin{center}
+        \large
+        \begin{tabular}{l@{\hspace{1em}:\hspace{4em}}l}
+            Author & utoppia  \\
+            Last Update & \today \\
+            Version & 1.0
+        \end{tabular}
+    \end{center}
+    
+    \clearpage
+
+    %\input{secs/forewords.tex}
+    \clearpage 
+
+    \pagenumbering{roman}
+    \tableofcontents
+    \clearpage
+
+    \pagenumbering{arabic}
+
+    \include{sections/sec1}
+    \include{sections/sec2}
+    \include{sections/sec3}
+
+\end{document}

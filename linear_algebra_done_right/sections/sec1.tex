@@ -1,0 +1,814 @@
+\section{Vector Space}
+
+\subsection{$\R^n$ and $\mC^n$}
+
+\begin{enumerate}
+    \item Suppose $a$ and $b$ are real numbers, not both $0$. Find real numbers $c$ and $d$ such that 
+        \[ 1/(a+bi) = c + di\] \label{ex:1A-1}
+        \begin{solution}
+            Since $c + di$ is the multiplicative inverse of $a + bi$, we have 
+            \[ (a+bi) (c+di) = 1,\]
+            expand the left-hand side of the equation above, we have 
+            \[ (ac-bd) + (ad + bc) i = 1,\]
+            \ie, 
+            \[\begin{cases}
+                ac - bd &= 1 \\
+                ad + bc &= 0,
+            \end{cases}\]
+            since $a \neq 0$, from the below equation $ad + bc = 0$ we have $d = -bc/a$, substitute it in the above equation $ac-bd=0$, we have 
+            \[ c = \dfrac{a}{a^2 + b^2},\]
+            use $d = -bc / a$ we have 
+            \[ d = -\dfrac{b}{a^2 + b^2}.\]
+        \end{solution}
+    \item Show that 
+        \[ \dfrac{-1+\sqrt{3}i}{2}\]
+        is a cube root of $1$ (meaning that its cube equals $1$).
+        \begin{solution}
+            We have 
+            \begin{align*}
+                \left(\dfrac{-1+\sqrt{3}i}{2}\right)^3 &= (\dfrac{-1+\sqrt{3}i}{2}\times \dfrac{-1+\sqrt{3}i}{2}) \times \dfrac{-1+\sqrt{3}i}{2} \\
+                                &= \dfrac{(1-3) + (-\sqrt{3}-\sqrt{3})i}{4} \times \dfrac{-1+\sqrt{3}i}{2} \\
+                                &= \dfrac{-1-\sqrt{3}i}{2} \times \dfrac{-1+\sqrt{3}i}{2} \\
+                                &= \dfrac{(1+3)+(-\sqrt{3}+\sqrt{3})i}{4} \\
+                                &= 1.
+            \end{align*}
+        \end{solution}
+    \item Find two distinct square root of $i$.
+        \begin{solution}
+            One can be 
+            \[ \dfrac{1+i}{2}\]
+            since 
+            \[ \dfrac{1+i}{2} \times \dfrac{1+i}{2} = \dfrac{(1-1)+(1+1)i}{2} = i .\]
+            Another can be 
+            \[  \dfrac{-1-i}{2} \]
+            since 
+            \[ \dfrac{-1-i}{2} \times \dfrac{-1-i}{2} = \dfrac{(1-1) + (1+1)i}{2} = i.\]
+        \end{solution}
+    \item Show that $\alpha+\beta = \beta + \alpha$ for all $\alpha,\beta \in \mC$.
+        \begin{solution}
+            Suppose $\alpha = a + bi$ and $\beta = c +di$, we have 
+            \begin{align*}
+                \alpha + \beta &= (a+bi) + (c+di) \\
+                               &= (a+c) + (b+d)i \\
+                               &= (c+a) + (d+b)i \\
+                               &= (c+di) + (a+bi) \\
+                               &= \beta + \alpha,
+            \end{align*}
+            where the second and forth equations above hold because of the definition of addition in $\mC$ and the third equation holds because 
+            of the usual commutativity of addition in $\R$.
+        \end{solution}
+    \item Show that $(\alpha+\beta) + \lambda = \alpha + (\beta + \lambda)$ for all $\alpha, \beta, \lambda \in \mC$.
+        \begin{solution}
+            Suppose $\alpha = a+bi$, $\beta = c+di$, $\lambda = e + fi$, we have 
+            \begin{align*}
+                (\alpha + \beta) + \lambda &= \left((a+bi) + (c+di)\right) + (e + fi) \\
+                                           &= \left( (a+c) + (c+b)i\right) + (e+fi) \\
+                                           &= (a+c+e) + (b+d+f)i \\
+                                           &= (a+(c+e)) + (b+(d+f))i \\
+                                           &= (a+bi) + \left((c+e)+(d+f)i\right) \\
+                                           &= \alpha + (\beta + \lambda),
+            \end{align*}
+            where second, third and fifth equations above hold because of the definition of the addition in $\mC$ and the fourth 
+            equation holds because of the normal associativity in $\R$.
+        \end{solution}
+    \item Show that $(\alpha \beta) \lambda = \alpha(\beta \lambda)$ for all $\alpha, \beta, \lambda \in \mC$.
+        \begin{solution}
+            Suppose $\alpha = a+bi$, $\beta = c+di$ and $\lambda = e+fi$, we have 
+            \begin{align*}
+                (\alpha \beta) \lambda &= \left((a+bi)(c+di)\right)(e+fi) \\
+                                       &= ((ac-bd)+(ad+bc)i)(e+fi) \\
+                                       &= ((ac-bd)e-(ad+bc)f) + ((ac-bd)f + (ad+bc)e)i \\
+                                       &= ((ce-df)a-(de+cf)b) + ((ce-df)b + (de+cf)a) i \\
+                                       &= (a+bi)((ce-df)+(de+cf)i) \\
+                                       &= (a+bi)((c+di)(e+fi)) \\
+                                       &= \alpha (\beta \lambda),
+            \end{align*}
+            where the second, third, fifth and sixth equations above hold because of the definition of multiplicative in $\mC$ and 
+            the fourth equation holds because of the normal form changing in $\R$.
+        \end{solution}
+    \item Show that for every $\alpha \in \mC$, there exists a unique $\beta \in \mC$ such that $\alpha + \beta = 0$.
+        \begin{solution}
+            Suppose $\alpha = a + bi$, it is easy to verify that $\beta = -a - bi$ satisfy the equaiton $\alpha + \beta = 0$, 
+            now suppose there is another $\beta' \neq -a - bi$ which satisfy the equation, denote it as 
+            \[ \beta' = c + di,\]
+            we have 
+            \[ \alpha + \beta' = (a+c) + (b+d)i = 0,\]
+            implies that 
+            \[ a + c = 0, \qquad b + d = 0,\]
+            therefore 
+            \[ c= -a, \qquad d=-b ,\]
+            which is a contradictt with our assumption, therefore there exists a unique $\beta$ holds the equation.
+        \end{solution}
+    \item Show that for every $\alpha \in \mC$ with $\alpha \neq 0$, there exists a unique $\beta \in \mC$ such $\alpha \beta = 1$.
+        \begin{solution}
+            Suppose $\alpha = a + bi$, let $\beta = c + di$ satisfy the equation $\alpha \beta = 1$, implies
+            \[ (ac-bd) + (ad+bc)i = 1, \]
+            from the solution of exercise \ref{ex:1A-1}, we have 
+            \[ c=\dfrac{a}{a^2 + b^2}, \qquad d=-\dfrac{b}{a^2+b^2}, \]
+            and its unique.
+        \end{solution}
+    \item Show that $\lambda(\alpha + \beta) =\lambda \alpha + \lambda \beta $ for all $\alpha, \beta, \lambda \in \mC$.
+        \begin{solution}
+            Suppose $\alpha = a+bi$, $\beta = c + di$ and $\lambda = e + fi$, we have 
+            \begin{align*}
+                \lambda (\alpha + \beta) &= (e+fi)( (a+bi) + (c+di)) \\
+                                         &= (e+fi)((a+c) + (b+d)i) \\
+                                         &= (e(a+c)-f(b+d)) + (e(b+d)+f(a+c))i \\
+                                         &= ((ea-fb) + (ec-fd)) + ((eb+fa) + (ed+fc))i\\
+                                         &= ((ea-fb) + (eb+fa)i) + ((ec-fd)+(ed+fc)i)\\
+                                         &= (e+fi)(a+bi) + (e+fi)(c+di) \\
+                                         &= \lambda \alpha + \lambda \beta,
+            \end{align*}
+            where the second the fifth equations above hold because of the definition of addition in $\mC$ and the third and sisth equations hold 
+            because of the definition of multiplicative in $\mC$, and the fourth equation holds in $\R$.
+        \end{solution}
+    \item Find $x \in \R^4$ such that 
+        \[ (4,-3,1,7) + 2x = (5,9,-6,8).\]
+        \begin{solution}
+            Denote $x$ as 
+            \[ x = (x_1, x_2, x_3, x_4), \]
+            we have 
+            \[ 2x = (2x_1, 2x_2, 2x_3, 2x_4)\]
+            because of the definition of scalar multiplication in $\F^n$, therefore we have 
+            \[ (4+2x_1, -3+2x_2, 1+2x_3, 7+2x_4) = (5,9,-6,8),\]
+            which is same as 
+            \[ 
+                \begin{cases}
+                    4 + 2x_1 &= 5\\
+                    -3 + 2x_2 &= 9 \\
+                    1 + 2x_3 &= -6 \\
+                    7 + 2x_4 &= 8 
+                \end{cases}
+            \]
+            solve the equation above we have 
+            \[ x_1 =0.5, \qquad x_2 = 6, \qquad x_3=-3.5, \qquad x_4=0.5 ,\]
+            thus 
+            \[ x = (0.5, 6, -3.5, 0.5) .\]
+        \end{solution}
+    \item Explain why there does not exist $\lambda \in \mC$ such that 
+        \[\lambda(2-3i,5+4i, -6+7i) = (12-5i, 7+22i, -31-9i).\]
+        \begin{solution}
+            This problem is same with finding $\lambda \in \mC$ which satisfies
+            \[
+                \begin{cases}
+                    \lambda (2-3i) &= 12-5i \\
+                    \lambda (5+4i) &= 7+22i \\
+                    \lambda (-6+7i) &= -31-9i
+                \end{cases},
+            \]
+            let $\lambda = a + bi$, where $a,b\in \R$, from the first equation $\lambda(2-3i)=12-5i$ and $(a+bi)(2-3i) = (2a+3b) + (2b-3a)i$ we have 
+            \[ 2a + 3b = 12, \qquad 2b-3a = -5,\]
+            which have solution
+            \[ a = 3, \qquad b = 2,\]
+            but $\lambda =3 +  2i $ does not satisfies the third equation, since 
+            \[ (3 + 2i) (-6+7i) = -32 + 9i \neq -31-9i.\]
+        \end{solution}
+    \item Show that $(x+y)+z = x+(y+z)$ for all $x, y, z \in \F^n$.
+        \begin{solution}
+            \begin{align*}
+                (x+y) + z &= \big((x_1, \ldots, x_n) + (y_1,\ldots, y_n)\big) + (z_1, \ldots, z_n) \\
+                          &= (x_1+y_1, \ldots, x_n+y_n) + (z_1, \ldots, z_n) \\
+                          &= (x_1+y_1+z_1, \ldots, x_n+y_n+z_n) \\
+                          &= \big(x_1+(y_1+z_1), \ldots, x_n + (y_n+z_n)\big) \\
+                          &= (x_1,\ldots,x_n) + (y_1+z_1, \ldots, y_n+z_n) \\
+                          &= x + (y+z),
+            \end{align*}
+            where the second, third, fifth and sixth equations hold because of the definition of addition in $\F^n$, and the fourth equaiton holds because 
+            of the associativity in $\F$.
+        \end{solution}
+    \item Show that $(ab)x = a(bx)$ for all $x\in \F^n$ and all $a, b \in \F$.
+        \begin{solution}
+            Let $x = (x_1, \ldots, x_n)$, we have 
+            \begin{align*}
+                (ab)x &= (ab)(x_1, \ldots, x_n) \\
+                      &= (abx_1, \ldots, abx_n) \\
+                      &= \big(a(bx_1), \ldots, a(bx_n)\big)\\
+                      &= a(bx_1, \ldots, bx_n)
+                      &= a(bx),
+            \end{align*}
+            where the second and fourth equations above hold because of the definition of the scalar-multiplication in $\F^n$,
+            and the third equation holds because of the associativity in $\F$.
+        \end{solution}
+    \item Show that $1x = x$ for all $x \in \F^n$.
+        \begin{solution}
+            Let $x = (x_1, \ldots, x_n)$, we have 
+            \begin{align*}
+                1 x &= 1 (x_1, \ldots, x_n) \\
+                    &= (1x_1, \ldots, 1x_n) \\
+                    &= (x_1, \ldots, x_n) \\
+                    &= x,
+            \end{align*}
+            where the second and fourth equations hold because of the definition of scalar-multiplication in $\F^n$, and 
+            the third equation hold because of the identity in $\F$.
+        \end{solution}
+    \item Show that $\lambda(x+y) = \lambda x + \lambda y$ for all $\lambda \in \F$ and all $x,y \in \F^n$.
+        \begin{solution}
+            Let $x = (x_1, \ldots, x_n)$ and $y = (y_1, \ldots, y_n)$, we have 
+            \begin{align*}
+                \lambda (x + y) &= \lambda \big( (x_1,\ldots,x_n) + (y_1, \ldots, y_n)\big) \\
+                                &= \lambda (x_1+y_1, \ldots, x_n+y_n) \\
+                                &= \big(\lambda(x_1+y_1), \ldots, \lambda(x_n+y_n)\big) \\
+                                &= (\lambda x_1 + \lambda y_1, \ldots, \lambda x_n + \lambda y_n) \\
+                                &= (\lambda x_1, \ldots, \lambda x_n) + (\lambda y_1, \ldots, \lambda y_n) \\
+                                &= \lambda (x_1, \ldots, x_n) + \lambda (y_1, \ldots, y_n) \\
+                                &= \lambda x + \lambda y, 
+            \end{align*}
+            where the second and fifth equations hold because of definition of addition in $\F^n$, 
+            the third and sixth equations hold because of the definition of scalar-multiplication in $\F^n$,
+            the fourth equation holds because of the distributive property in $\F$.
+        \end{solution}
+    \item Show that $(a+b)x = ax + bx$ for all $a,b \in \F$ and all $x \in \F^n$.
+        \begin{solution}
+            Let $x = (x_1, \ldots, x_n)$ we have 
+            \begin{align*}
+                (a + b) x &= (a+b)(x_1, \ldots, x_n) \\
+                          &= \big( (a+b)x_1, \ldots, (a+b)x_n\big) \\
+                          &= (ax_1 + bx_1, \ldots, ax_n + bx_n) \\
+                          &= (ax_1, \ldots, ax_n) + (bx_1, \ldots, bx_n) \\
+                          &= a(x_1, \ldots, x_n) + b(x_1, \ldots, x_n) \\
+                          &= ax + bx,
+            \end{align*}
+            where the second and fifth equations hold because of the definition of scalar-multiplication in $\F^n$, 
+            and the fourth equation holds because of the definition of addition in $\F^n$,
+            and the third equation holds because of the associativity and distributive property in $\F$, since 
+            \[ (a+b)x_i = x_i(a+b) = x_ia + x_ib = ax_i + bx_i, \qquad i = 1, \ldots, n.\]
+        \end{solution}
+\end{enumerate}
+
+\subsection{Definition of Vector Space}
+
+\begin{enumerate}
+    \item Prove that $-(-v) = v$ for every $v \in \V$.
+        \begin{solution}
+            Let $-(-v) = w$, since $w$ is the additive invers of $-v$, we have 
+            \[ w + (-v) = 0,\]
+            add by $v$ in the both sides of the equation above, we have 
+            \[ w + (-v) + v = v,\]
+            we can imply 
+            \[ w = v ,\]
+            since
+            \[ (-v) + v = 0.\]
+        \end{solution}
+    \item Suppose $a \in \F, v \in \V$, and $av = 0$. Prove that $a=0$ or $v=0$.
+        \begin{solution}
+            If $a = 0$, then we solve the problem, therefore suppose $a \neq 0$, since $a \in \F$, it have multiplicative inverse, 
+            denote it to be $a^{-1}$, \ie 
+            \[ a a^{-1} = a^{-1}a =  1,\]
+            from $av = 0$, we have 
+            \[ a^{-1}av = a^{-1}0, \]
+            from the left-hand side of the equation above we have 
+            \[ a^{-1}av = (a^{-1}a)v = 1v = v,\]
+            from the right-hand side of the equation above we have 
+            \[ a^{-1}0 = 0,\]
+            therefore we imply that 
+            \[ v = 0,\]
+            which is as desired.
+        \end{solution}
+    \item Suppose $v,w \in \V$. Explain why there exists a unique $x \in \V$ such that $v + 3x = w$.
+        \begin{solution}  
+            From $v + 3x = w$ we can imply that 
+            \[ \dfrac{1}{3}(v-w) + x = 0,\]
+            which means $x$ is the additive inverse of $\dfrac{1}{3}(v-w)$, thus $x$ is unique, since 
+            \textbf{Every element in a vector space has a unique additive inverse}.
+        \end{solution}
+    \item The empty set is not a vector space. The empty set fails to satisfy only one of the requirements 
+        listed in 1.19. Which one?
+        \begin{solution}
+            The \textbf{Additive identity}, since the additive identity requires at least one element $0$ exists in the vector space.
+        \end{solution}
+    \item Show that in the definition of a vector space (1.19), the additive inverse condition can be 
+        replaced with the condition that 
+        \[ 0v = 0 \text{ for all } v \in \V.\]
+        Here the $0$ on the left side is the number $0$, and the $0$ on the right side is the additive identity 
+        of $\V$. (The phrase "a condition can be replaced" in a definition means that the collection of 
+        objects satisfying the definition is unchanged if the original condition is replaced with the 
+        new condition.)
+        \begin{solution}
+            Suppose $v$ is a element in such set, We have 
+            \begin{align*}
+                v + 0 &= 1v + 0v \\
+                      &= (1+0)v \\
+                      &= 1v \\
+                      &= v,
+            \end{align*}
+            where the second equaiton holds because of the distributive properties of this set, and the fourth equation holds 
+            because of the multiplicative identity of this set. 
+            
+            Thus, the condition $0v = 0$ is same with $v + 0 = v$ if a set satisfies other conditions listed in 1.19.
+        \end{solution}
+    \item Let $\infty$ and $-\infty$ denote two distinct objects, neither of which is in $\R$. Define an 
+        addition and scalar multiplication on $\R \cup \{\infty\} \cup \{-\infty\}$ as you could guess 
+        from the notation. Specifically, the sum and product of two real number is as usual, and for 
+        $t \in \R$ define 
+        \[ t \infty = 
+            \begin{cases}
+                -\infty \quad& \text{if $t < 0$}, \\
+                0 \quad& \text{if $t=0$}, \\
+                \infty \quad& \text{if $t>0$},
+            \end{cases} \qquad 
+            t(-\infty) = 
+            \begin{cases}
+                \infty \quad& \text{if $t < 0$}, \\
+                0 \quad& \text{if $t = 0$}, \\
+                -\infty \quad& \text{if $t > 0$},
+            \end{cases} \\
+        \]
+        \[
+            t+\infty = \infty + t = \infty, \qquad t + (-\infty) = (-\infty) + t = -\infty, \\
+        \]
+        \[
+            \infty + \infty = \infty, \qquad (-\infty) + (-\infty) = -\infty, \qquad \infty + (-\infty) = 0.
+        \]
+        Is $\R \cup \{\infty\} \cup \{-\infty\}$ a vector space over $\R$? Explain.
+        \begin{solution}
+            Yes. Because it satisfies all condition that the vector space should satisfy. For example let's check the commutative, 
+            \ie, 
+            \[ u + v = v + u, \qquad \text{for all $u,v \in \R \cup \{\infty\} \cup \{-\infty\}$},\]
+            \begin{itemize}
+                \item If $u, v \in \R$, the equation holds;
+                \item otherwise, one of $u$ and $v$ should be $\infty$ or $-\infty$, since we have 
+                    \[t+\infty = \infty + t = \infty, \qquad t + (-\infty) = (-\infty) + t = -\infty,\]
+                    which means the equation holds.
+            \end{itemize}
+
+        \end{solution}
+\end{enumerate}
+
+\subsection{Subspaces}
+
+\begin{enumerate}
+    \item For each of the following subsets of $\F^3$, determine whether it is a subspace of $\F^3$;
+        \begin{enumerate}[label=(\alph*)]
+            \item $\{(x_1, x_2, x_3) \in \F^3: x_1 + 2x_2 + 3x_3 = 0\}$;
+            \item $\{(x_1, x_2, x_3) \in \F^3: x_1 + 2x_2 + 3x_3 = 4\}$;
+            \item $\{(x_1, x_2, x_3) \in \F^3: x_1x_2x_3=0\}$;
+            \item $\{(x_1, x_2. x_3) \in \F^3: x_1 = 5x_3\}$.
+        \end{enumerate}
+        \begin{solution}
+            For all solution below, we suppose $u$ and $v$ are the element of corresponded subsets. and $a$ to be a scalar, \ie, $a \in \F$,
+            and denote $V$ to be the corresponded subsets.
+            \begin{enumerate}[label=(\alph*)]
+                \item $u + v = (u_1+v_1, u_2+v_2, u_3+v_3)$ and we have 
+                    \[
+                        (u_1+v_1) + 2(u_2+v_2) + 3(u_3+v_3) = (u_1+2u_2+3u_3) + (v_1+2v_2+3v_3) = 0 + 0 = 0,
+                    \]
+                    therefore 
+                    \[ u + v \in V.\]
+                    Also we have $au = (au_1, au_2, au_3)$ which holds the equation 
+                    \[ au_1 + 2au_2 + 3au_3 = a(u_1+2u_2+eu_3) = 0,\]
+                    therefore 
+                    \[ au \in V ,\]
+                    which menas $V$ is closed under addition and scalar multiplication, \ie, \textbf{it is a subspace}.
+                \item Since $u + v = (u_1+v_1, u_2+v_2, u_3+v_3)$ and 
+                    \[ (u_1+v_1) + 2(u_2+v_2) + 3(u_3+v_3) = (u_1+2u_2+3u_3) + (v_1+2v_2+3v_3) = 8 \neq 0,\]
+                    which means that $V$ is not closed under addition, \ie, it is \textbf{not} a subspace.
+                \item It's \textbf{not} a subspace, we can give a counterexample, it is easy to verify that 
+                    \[ u=(1,1,0), \qquad v = (0,1,1) \]
+                    are in $V$, but $u + v = (1,2,1)$ is not in $V$.
+                \item For $u + v = (u_1+v_1, u_2+v_2, u_3+v_3)$ we have 
+                    \[ (u_1 + v_1) = 5(u_3+v_3) ,\]
+                    therefore 
+                    \[ u + v \in V ,\]
+                    and for $au = (au_1, au_2, au_3)$ we have 
+                    \[ au_1 = 5au_3,\]
+                    implies that 
+                    \[ au \in V,\]
+                    means that $V$ is closed under addition and scalar multiplication, \ie, it is a subspace.
+            \end{enumerate}
+        \end{solution}
+    \item Verify all the assertions in Example 1.35.
+        \begin{solution}
+            \begin{enumerate}[label=(\alph*)]
+                \item If the set 
+                    \[ V = \{(x_1, x_2, x_3, x_4) \in \F^4: x_3 = 5x_4 + b\}\]
+                    is a subspace, means it is closed under addition and scalar multiplication, \ie, 
+                    for $u, v \in V$, we have $u + v \in V$, implies that 
+                    \[ u_3 + v_3 = 5(u_4 + v_4) + b, \]
+                    since we have $u, v \in V$, means 
+                    \[ u_3 = 5u_4 + b, \qquad v_3 = 5v_4 + b,\]
+                    we can imply that $b = 0$.
+
+                    In another direction, if $b=0$, if $u, v \in V$, we have 
+                    \[ u_3 + v_3 = 5(u_4 + v_4),\]
+                    which means for $u + v in V$, 
+                    and 
+                    \[ au_3 = 5au_4,\]
+                    which means that 
+                    \[ au \in V,\]
+                    therefore $V$ is a subspace.
+                \item \textcolor{black}{The set of continuous real-valued functions on the interval $[0,1]$ is a subspace of $\R^{[0,1]}$.}
+                    
+                    Denote the set as $C^{[0,1]}$, since the function $0: [0,1] \to R$ defined as 
+                    \[ 0(x) = 0 \]
+                    is continuous, \ie, 
+                    \[ 0 \in C^{[0,1]}.\]
+                    
+                    Suppose $f,g \in C^{[0,1]}$, since $f$ and $g$ are continuous real-value functions,
+                    the $f + g$ is also a continuous real-valued function, \ie, 
+                    \[ f + g \in C^{[0,1]},\] 
+                    which means $C^{[0,1]}$ is closed under addtion.
+
+                    let $\lambda \in \F$, the function $\lambda f$ is also a continuous function, means it exists in $C^{[0,1]}$, 
+                    \ie, \[ \lambda f \in C^{[0,1]},\]
+                    means that $C^{[0,1]}$ is closed under the scalar multiplication.
+
+                    Finally, we conclude that $C^{[0,1]}$ is a subspace of $\R^{[0,1]}$.
+                \item \textcolor{black}{The set of differentiable real-valued functions on $R$ is a subspace of $\R^{\R}$.}
+                    
+                    The function $0:\R \to \R$ defined as 
+                        \[ 0(x) = 0\]
+                    is differentiable, which means $0$ is in the set.
+
+                    And for any functions $f, g$ in this set, since $f$ and $g$ are differentiable, implies that $f + g$ is differentiable, too,
+                    \ie, $f + g$ is in this set.
+
+                    For any scalar $\lambda$ and function $f$ in this set, we have $\lambda f$ is differentiable, \ie, $\lambda f$ is in this set.
+
+                    Summary, we show that the set is not empty, and is closed under additon and scalar multiplication, \ie, it is a subspace.
+                \item \textcolor{black}{The set of differentiable real-valued functions $f$ on the interval $(0,3)$ such that $f'(2)=b$ is a subspace of $\R^{(0,3)}$ if 
+                    and only if $b=0$.}
+
+                    If this set is a subspace, means that function $0$ defined as $0(x) = 0$ is in this set, and we have $0'(x)=0$, which implies that $b=0$.
+
+                    Now suppose $b=0$, it is easy to verify that function $0$ is in this set,
+                    and for functions $f$ and $g$ which are in this set, we have $f + g$ is differentiable, and 
+                    \[(f+g)'(2) = f'(2) + g'(2) = 0\]
+                    which means $f + g$ is in this set, too.
+
+                    and for any scalar $\lambda$, the function $\lambda f$ is also differentiable, and we have 
+                    \[ (\lambda f)'(2) = \lambda f'(2) = 0\]
+                    which means that $\lambda f$ is in this set. 
+
+                    Summary, we show that this set is not empty, and is closed under addition and scalar multiplication, we can conclude that this set is a subspace.
+                \item \textcolor{black}{The set of all sequences of complex numbers with limit $0$ is a subspace of $\mC^{\infty}$.}
+                
+                    Since the sequences 
+                    \[ 0, 0, 0, \ldots \]
+                    has limit $0$, which means it is in this set. 
+
+                    Suppose sequences $u$ and $v$ is in this set, we have 
+                    \[ \lim_{k\to \infty} u_k = 0, \qquad \lim_{k \to \infty} v_k = 0,\]
+                    therefore the limit of $u + v$ is 
+                    \[ \lim_{k \to \infty} (u_k + v_k) = \lim_{k\to \infty} u_k + \lim_{k\to \infty} v_k = 0,\]
+                    which means $u + v$ is in this set, \ie, this set is closed under addition.
+
+                    For any scalar $a \in \mC$, we have 
+                    \[ \lim_{k \to \infty} au_k = a\lim_{k \to \infty} u_k = 0,\]
+                    which means $au$ is in this set, \ie, this set is closed under scalar multiplication.
+
+                    Thus, the set is a subspace.
+            \end{enumerate}
+        \end{solution}
+    \item Show that the set of differentiable real-valued functions $f$ on the interval $(-4,4)$ such 
+        that $f'(-1)=3f(2)$ is a subspace of $R^{(-4,4)}$.
+        \begin{solution}
+            The function $0: (-4,4) \to \R$ define as 
+            \[ 0(x) = 0, \]
+            satisfies condition, means it's in this set.
+
+            Suppose $f$ and $g$ are any functions in this set, which means they satisfies that 
+            \[ f'(-1) = 3f(2), \qquad g'(-1) =3g(2),\]
+            then we have 
+            \[ (f+g)'(-1) = f'(-1) + g'(-1) = 3(f(2)+g(2)) = 3(f+g)(2),\]
+            means $f + g$ is in this set.
+
+            And with any $\lambda \in \F$, we have 
+            \[ (\lambda f)'(-1) = \lambda f'(-1) = 3\lambda f(2) = 3(\lambda f)(2),\]
+            means that $\lambda f$ is in this set.
+
+            Thus, this set is a subspace.
+        \end{solution}
+    \item Suppose $b \in \R$. Show that the set of continuous real-valued functions $f$ on the interval 
+        $[0,1]$ such that $\int_0^{1} f = b$ is a subspace of $\R^{[0,1]}$ if and only if $b=0$.
+        \begin{solution}
+            Suppose the set is a subspace, and $f$ and $g$ are any functions in this set, therefore $f+g$ is in this set, too, means 
+            \[ \int_0^1 f = b,\qquad \int_0^1 g = b,\qquad \int_0^1 (f+g) = b,\]
+            since 
+            \[ \int_0^1 (f+g) = \int_0^1 f + \int_0^1 g = 2b,\]
+            implies $2b = b$, \ie 
+            \[ b = 0.\]
+            
+            In another direction, suppose $b =0$, \ie, the function in the set satisfies $\int_0^1 f = 0$.
+            
+            Obviously, the function $0: (-4,4) \to \R$ defined as 
+            \[ 0(x) = 0\]
+            satisfies the condition, therefore it is in this set.
+
+            And for any functions $f$ and $g$ in this set, we have 
+            \[ \int_0^1 (f+g) = \int_0^1 f + \int_0^1 g = 0 ,\]
+            means $f + g$ is in this set, too.
+
+            For any scalar $\lambda$, we have 
+            \[ \int_0^1 (\lambda f) = \lambda \int_0^1 f = 0,\]
+            means $\lambda f$ is in this set.
+
+            Thus, we conclude that if $b=0$, the set described above is a subspace.
+        \end{solution}
+    \item Is $\R^2$ a subspace of the complex vector space $\mC^2$?
+        \begin{solution}
+            $\R^2$ is \textbf{not} a subspace of $\mC^2$, as we can give a counterexample: Suppose it is, 
+            then we know $\R^2$ is closed under scalar multiplication, as $(1,0) \in \R^2$, let $\alpha = i$, 
+            we have $i(1,0) = (i,0) \in \R^2$, which is contradictt.
+        \end{solution}
+    \item \begin{enumerate}[label=(\alph*)]
+            \item Is $\{(a,b,c) \in \R^3: a^3=b^3\}$ a subspace of $\R^3$?
+            \item Is $\{(a,b,c) \in \R^3: a^3  = b^3\}$ a subspace of $\mC^3$?
+        \end{enumerate}
+        \begin{solution}
+            \begin{enumerate}[label=(\alph*)]
+                \item Yes, since the additive identity is
+                    \[ (0,0,0) ,\]
+                    and it close under addition and scalar multiplication, since 
+                    \[ (a+x, b+y, c+z) \in \R^3 \text{ and } (a+x)^3 = (b+y)^3 \]
+                    if $(a,b,c), (x,y,z) \in \R^3$ and $a^3=b^3, x^3=y^3$, with same method, we can prove that 
+                    it's closed satisfies the conditions.
+                \item No, we can use the method of the previous problem.
+            \end{enumerate}
+        \end{solution}
+    \item Give an example of a nonempty subset $U$ of $\R^2$ such that $U$ is closed under addition 
+        and under taking additive inverse (meaning $-u \in U$ whenever $u \in U$), but $U$ is not 
+        a subspace of $\R^2$.
+        \begin{solution}
+            Let $\N$ denote set of all the integer number, therefore 
+            \[ \N^2 \subset \R^2 ,\]
+            and 
+            \[ (0,0) \in \N^2 \]
+            is the additive identity, and it is closed under addition, since for $(a,b) \in \N^2$ and $(c,d) \in \N^2$, 
+            we have 
+            \[ (a+c, b+d) \in \N^2 ,\]
+            meanwhile it is under taking additive inverse, for a element $u = (a,b) \in \N^2$, we have 
+            \[ -u = (-a,-b) \in \N^2 ,\]
+            but it is not closed under scalar multiplication, if we choos $a=0.5$ and $(1,1) \in \N^2$
+            we have 
+            \[ (0.5, 0.5) \notin \N^2 .\]
+        \end{solution}
+    \item Give an example of a nonempty subset $U$ of $\R^2$ such that $U$ is closed under scalar multiplication,
+        but $U$ is not a subspace of $\R^2$.
+        \begin{solution}
+            Let the set of $U$ to be 
+            \[ U = \{(x,y) \in \R^2: x^2 = y^2\},\]
+            for any $u = (x,y) \in U$ and $a \in \R$, 
+            we have $au = (ax, ay)$ which satisfies $(ax)^2 = (ay)^2$, \ie, 
+            \[ au \in U ,\]
+            but for $u=(1,-1), v=(1,1) \in U$, 
+            we have 
+            \[ u+v = (2,0) \notin U .\]
+        \end{solution}
+    \item A function $f: \R \to \R$ is called \textbf{periodic} if there exists a positive number $p$ such that 
+        $f(x) = f(x+p)$ for all $x \in \R$. Is the set of periodic functions from $\R$ to $\R$
+        a subspace of $\R^{\R}$? Explain.
+        \begin{solution}
+            Yes.
+
+            First, we give a basic fact: if a function has periodic $p$, \ie, $f(x) = f(x+p)$, then we have 
+            \[ f(x) = f(x + pk), \qquad k \in \N .\]
+
+            Now, we can figure out that the additive identity is the periodic function $0:\R \to \R$ which is defined as
+            \[ 0(x) = 0 .\]
+
+            Suppose functions $f, g$ are element of this set, and we have 
+            \[ f(x) = f(x+p_1), \qquad g(x) = g(x+p_2) ,\]
+            let $p$ to be the lowest common multiple of $p_1$ and $p_2$, which means there exist $k_1, k_2 \in \N$, that 
+            \[ k_1p_1 = k_2p_2 = p.\]
+            according the fact we gived above, we have
+            \[ f(x) = f(x+p_1) = f(x+p_1k_1) = f(x+p), \qquad g(x) = g(x+p_2) = g(x+p_2k_2) = g(x+p),\]
+            therefore 
+            \[ (f+g)(x) = f(x) + g(x) = f(x+p) + g(x+p) = (f+g)(x+p) ,\]
+            which means that $f+g$ is a perodic function, \ie, this set is closed under addition.
+
+            Suppose $f$ is in this set and it's periodic is $p$, and $\lambda \in \R$, we have 
+            \[ (\lambda f)(x) = \lambda f(x) = \lambda f(x+p) = (\lambda f) (x+p) ,\]
+            which means this set is closed under scalar multiplication.
+        \end{solution}
+    \item Suppose $U_1$ and $U_2$ are subspaces of $\V$. Prove that the intersection $U_1 \cap U_2$ is 
+        a subspace of $\V$.
+        \begin{solution}
+            Since $U_1$ and $U_2$ are subspaces, the additive identity $0$ is in both set, which means 
+            \[ 0 \in U_1 \cap U_2 .\]
+
+            Now suppose $u, v \in U_1 \cap U_2$, \ie, $u,v \in U_1$ and $u,v \in U_2$,
+            we have 
+            \[ u+v \in U_1, \qquad u+v \in U_2\]
+            since $U_1$ and $U_2$ are subspaces, therefore we have 
+            \[ u+v \in U_1 \cap U_2 ,\]
+            which means it is closed under addition.
+
+            Suppose $u \in U_1 \cap U_2$, \ie, $u \in U_1$ and $u \in U_2$, and let $a \in \F$,
+            we have 
+            \[ au \in U_1, \qquad au \in U_2 \]
+            since $U_1$ and $U_2$ are subspaces, therefore 
+            \[ au \in U_1 \cap U_2 ,\]
+            which means it is closed under scalar multiplication.
+
+            Thus, $U_1 \cap U_2$ is a subspace of $\V$.
+        \end{solution}
+    \item Prove that the intersection of every collection of subspaces of $\V$ is a subspace of $\V$.
+        \begin{solution}
+            For convenient, Let $S_1, S_2, \ldots$ denote the subspaces of $\V$, and $I_1, I_2, \ldots$ 
+            denote the intersection of the collections of subspaces. which means 
+            \[ I_i = S_{k_1} \cap S_{k_2} \cap \dots .\]
+
+            It is easy to verify that the additive identity $0$ is an element of $I_i$ since $0$ is an 
+            element of every subspaces of $\V$. 
+
+            Suppose $u, v \in I_i$, which means they are in every $S_{k_1}, S_{k_2}, \ldots$, since 
+            $S_{k_1}, S_{k_2}, \ldots$ are subsapces, which means $u+v$ are in every  $S_{k_1}, S_{k_2}, \ldots$,
+            \ie, 
+            \[ u+v \in I_i ,\]
+            which means $I_i$ is closed under addition.
+
+            Suppose $a \in \F$, $u \in I_i$, implies that $u$ is in every $S_{k_1}, S_{k_2}, \ldots$, since $S_{k_1}, S_{k_2}, \ldots$
+            are subspaces, we have $au$ in every $S_{k_1}, S_{k_2}, \ldots$, \ie 
+            \[ au \in I_i ,\]
+            which means $I_i$ is closed under scalar multiplication.
+        \end{solution}
+    \item Prove that the union of two subspaces of $\V$ is a subspace of $\V$ if and only if one of the 
+        subspaces is contained in the other.
+        \begin{solution}
+            Denote the two subspaces of $\V$ as $U_1$ and $U_2$.
+
+            First we suppose $U_1 \cup U_2$ is a subspace but neither $U_1$ nor $U_2$ is contained in the other, 
+            which means there are elements $u$ and $v$ with 
+            \[ u \in U_1 \text{ and }u \notin U_2,\qquad  v \in U_2 \text{ and } v \notin U_1 ,\]
+            therefore 
+            \[ u,v \in U_1 \cup U_2 ,\]
+            with assumption $U_1 \cup U_2$ is a subpace, which means 
+            \[ u+v \in U_1 \cup U_2 ,\]
+            \ie, 
+            \[ u+v \in U_1 \text{ or } u+v \in U_2.\]
+            If $u + v \in U_1$ with $-u \in U_1$ we have $u+v+(-u) = v \in U_1$ which is contradictt.
+            If $u + v \in U_2$ with $-v \in U_2$ we have $u+v+(-v) = u \in U_2$ which is contradictt, too.
+            Therefore if $U_1 \cup U_2$ is a subspace, one of the $U_1$ and $U_2$ is contained in the other.
+
+            In conversely direction, we can assume $U_1 \subseteq U_2$, implies that 
+            \[ U_1 \cup U_2 = U_2 \]
+            which is a subspace.
+        \end{solution}
+    \item Prove that the union of three subspaces of $\V$ is a subspace of $\V$ if and only if one of 
+        the subspaces contains the other two.
+        \begin{solution}
+            Denote the three subspaces of $\V$ as $U_1, U_2, U_3$.
+
+
+        \end{solution}
+    \item Verify the assertion in Example 1.38.
+        \begin{solution}
+            For any $u \in U$ and $v \in W$, we have 
+            \[ u+v = (x_1+x_2, x_1+x_2, y_1 + x_2, y_1 + y_2) \in \{(x,x,y,z)\in \F^4:x,y,z \in \F\},\]
+            and for any $(x,x,y,z)$, we can find 
+            \[ u=(x-y+z/2,x-y+z/2,z/2,z/2) \in U,\qquad v=(y-z/2,y-z/2,y-z/2,z/2)\in W,\]
+            which satisfies
+            \[ u + v = (x,x,y,z),\]
+            as we desired.
+        \end{solution}
+    \item Suppose $U$ is a subspace of $\V$. What is $U + U$?
+        \begin{solution}
+            As $U$ is a subspace, it is closed under addtion, \ie, for any $u,v \in U$,
+            we have $u + v \in U$, therefore 
+            \[ U + U = U.\]
+        \end{solution}
+    \item Is the operation of addition on the subspaces of $\V$ commutative? In other words, 
+        if $U$ and $W$ are subspaces of $V$, is $U + W = W + U$?
+        \begin{solution}
+            Suppose $x \in U + W$, according the definition, we have 
+            \[ u \in U, \qquad v \in W, \]
+            with 
+            \[ x = u + v = v + u,\]
+            which means $x \in W + U$. With same method, we can prove that if $x \in W + U$, we 
+            have $x \in U + W$. 
+            Thus, 
+            \[ U+W = W+U.\]
+        \end{solution}
+    \item Is the operation of addition on the subspaces of $V$ associative? In other words, if 
+        $U_1, U_2. U_3$ are subspaces of $V$, is 
+        \[ (U_1 + U_2) + U_3 = U_1 + (U_2 + U_3)?\]
+        \begin{solution}
+            For any $u_1 \in U_1$, $u_2 \in U_2$, $u_3 \in U_3$, we have 
+            \[ u_1 + u_2 + u_3 = (u_1+u_2) + u_3 \in (U_1 + U_2) + U_3,\]
+            and 
+            \[ u_1 + u_2 + u_3 = u_1 + (u_2 + u_3) \in U_1 | (U_2 + U_3),\]
+            therefore 
+            \[ (U_1 + U_2) + U_3 = U_1 + (U_2 + U_3) .\]
+        \end{solution}
+    \item Does the operation of addition on the subspaces of $V$ have an additive identity? Which subspaces have 
+        additive inverses?
+        \begin{solution}
+            The subspace $0=\{0\}$ is an addition identity, since for any subspace $U$, we have 
+            \[ U + 0 = U .\]
+
+            Suppose $U$ has additive inverse $V$, \ie, 
+            \[ U + V = 0,\]
+            therefore for any $u \in U$, and $v \in V$, we have 
+            \[ u + v = 0,\]
+            since $U$ is a subspace, means for $-u \in U$, and 
+            \[ -u + v = 0,\]
+            we have 
+            \[ v= 0,\]
+            with same method, we have $-v \in V$ and $u + (-v) = 0$, which implies 
+            \[ u=0,\]
+            therefore $0$ is the only one subspace who has an additive inverse.
+        \end{solution}
+    \item Prove or give a counterexample: if $U_1, U_2$, $W$ are subspaces of $V$ such that 
+        \[ U_1 + W = U_2 + W ,\]
+        then $U_1 = U_2$.
+        \begin{solution}
+            We give a counterexample, let $V = \F^2$, and
+            \[ W = \F^2,\qquad U_1=\{(x,0):x\in \F\},\qquad U_2=\{(0,x):x\in \F\},\]
+            therefore $W,U_1,U_2$ are subspace of $V$, and 
+            \[ U_1 + W = W = U_2 + W ,\]
+            but 
+            \[ U_1 \neq U_2 .\]
+        \end{solution}
+    \item Suppose 
+        \[ U = \{(x,x,y,y) \in \F^4: x, y \in \F\}.\]
+        Find a subspace $W$ of $\F^4$ such that $\F^4=U \oplus W$.
+        \begin{solution}
+            Let 
+            \[ W = \{(x,y,y,0) \in \F^4: x,y,z \in F\},\]
+            it is easy to verify that $W$ is a subspace, and 
+            \[ U + W = \F^4 ,\]
+            now we will show every element in $\F^4$ can be written in only one way as a sum of $u+w$:
+            For $(x,y,z,w) \in \F^4$, we suppose $u = (p, p, q,q) \in U$ and $w = (m, n,n,0) \in W$ with 
+            \[ u + w = (x,y,z,w), \]
+            which is same as 
+            \[
+                \begin{cases}
+                    p + m &= x \\
+                    p + n &= y \\
+                    q + n &= z \\
+                    q &= w
+                \end{cases},
+            \]
+            we have
+            \[ p = y-z+w, \qquad q=w, \qquad m = x-y+z-w, \qquad n=z - w,\]
+            which are unique as desired.
+        \end{solution} 
+    \item Suppose 
+        \[ U = \{(x,y,x+y,x-y,2x) \in \F^5: x,y \in F\}.\]
+        Find a subspace $W$ of $\F^5$ such that $\F^5 = U \oplus W$.
+        \begin{solution}
+            Let 
+            \[ W = \{(0,0,x,y,z) \in \F^5: x,y,z \in \F\},\]
+            $W$ is a subspace of $\F^5$, and 
+            \[ U + W = \F^5 ,\]
+            For any element $(x_1, x_2, x_3, x_4, x_5) \in \F^5$, the only way to format as sum of 
+            elements of $U$ and $W$ is 
+            \[ (x_1, x_2, x_1+x_2, x_1-x_2,2x_2) \in U, \qquad (0, 0, x_3-x_1-x_2, x_4-x_1+x_2, x_5-2x_1)\in W.\]
+        \end{solution}
+    \item Suppose 
+        \[ U = \{(x,y,x+y,x-y,2x) \in \F^5: x,y \in \F\}.\]
+        Find three subspaces $W_1,W_2,W_3$ of $\F^5$, none of which equals $\{0\}$, 
+        such that $\F^5 = U \oplus W_1 \oplus W_2 \oplus W_3$.
+        \begin{solution}
+            We give $W_1, W_2, W_3$ as following:
+            \begin{align*}
+                W_1 &= \{(0,0,x,x,x) \in \F^5: x \in \F\}\\
+                W_2 &= \{(0,0,0,x,x) \in \F^5: x \in \F\}\\
+                W_3 &= \{(0,0,0,0,x) \in \F^5: x \in \F\}
+            \end{align*}
+            it is not difficult to verify that 
+            \[ U \oplus W_1 \oplus W_2 \oplus W_3 = \F^5,\]
+            since for any element $(x_1, x_2, x_3, x_4, x_5) \in \F^5$, we have 
+            \begin{align*}
+                u &= (x_1, x_2, x_1+x_2, x_1 - x_2, 2x_1) \in U \\
+                w_1 &= (0,0,x_3-x_1-x_2,x_3-x_1-x_2,x_3-x_1-x_2) \in W_1 \\
+                w_2 &= (0,0,0,x_4-x_3+2x_2, x_4-x_3+2x_2) \in W_2 \\
+                w_3 &= (0,0,0,0,x_5-x_4-x_1-x_2) \in W_3.
+            \end{align*}
+        \end{solution}
+    \item Prove or give a counterexample: if $U_1, U_2, W$ are subspaces of $V$ such that 
+        \[ V = U_1 \oplus W \qquad \text{and} \qquad V = U_2 \oplus W,\]
+        then $U_1 = U_2$.
+        \begin{solution}
+            I will give a counterexample, let $V = \R^2$, and 
+            \[ W = \{(x,x) \in \R^2: x \in \R\},\]
+            we have 
+            \[ U_1 = \{(0,x)\in R^2:x\in\R\}, \qquad U_2 =\{(x,0)\in \R^2: x \in \R\},\]
+            which satisfies
+            \[ U_1 \oplus W = V = U_2 \oplus W,\]
+            but 
+            \[ U_1 \neq U_2.\]
+        \end{solution}
+    \item A function $f:\R \to \R$ is called \textbf{\textit{even}} if 
+        \[ f(-x) = f(x) \]
+        for all $x \in \R$. A function $f: \R \to \R$ is called \textbf{\textit{odd}} if 
+        \[ f(-x) = -f(x) \]
+        for all $x \in \R$. Let $U_e$ denote the set of real-valued even functions on $\R$
+        and let $U_o$ denote the set of real-valued odd functions on $\R$. Show that $\R^{\R}=U_e \oplus U_o$.
+        \begin{solution}
+            It is easy to show that any real-valued function $f$ can be expressed as a sum of 
+            an even function and an odd function, we let 
+            \[ g(x) = \dfrac{f(x)+f(-x)}{2}, \qquad \phi(x) = \dfrac{f(x)-f(-x)}{2},\]
+            we have $g(-x) = g(x)$ which means $g$ is even and $\phi(-x)=-\phi(x)$ means $\phi$ is odd, and 
+            \[ f = g + \phi .\]
+
+            The problem is that the form of $g$ and $\phi$ unique? Let suppose $g$ is an even function and $\phi$ is an odd function 
+            with 
+            \[ f(x) = g(x) + \phi(x) ,\]
+            let $x = -x$, we have 
+            \[ f(-x) = g(-x) + \phi(-x) = g(x) - \phi(x) ,\]
+            from above two equations we have 
+            \[ g(x) = \dfrac{f(x)+f(-x)}{2}, \qquad \phi(x) = \dfrac{f(x)-f(-x)}{2},\]
+            as we desired.
+        \end{solution}
+\end{enumerate}

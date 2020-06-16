@@ -1,0 +1,563 @@
+\section{Finit-Dimensional Vector Spaces}
+
+\subsection{Span and Linear Independence}
+
+\begin{enumerate}
+    \item Suppose $v_1, v_2, v_3, v_4$ spans $V$. Prove that the list 
+        \[ v_1-v_2, v_2-v_3, v_3-v_4, v_4\]
+        also spans $V$.
+        \begin{solution}
+            If $u \in \mspan{v_1, v_2, v_3,v_4}$, \ie 
+            \begin{align*}
+                u &= a_1v_1 + a_2v_2 + a_3v_3 + a_4v_4 \\
+                  &= a_1(v_1-v_2) + (a_2+a_1)(v_2-v_3)+(a_3+a_2+a_1)(v_3-v_4) + (a_4+a_3+a_2+a_1)v_4,
+            \end{align*}
+            therefore $u \in \mspan{ v_1-v_2, v_2-v_3, v_3-v_4, v_4}$.
+
+            Now suppose $u \in \mspan{ v_1-v_2, v_2-v_3, v_3-v_4, v_4}$, \ie 
+            \begin{align*}
+                u &= a_1(v_1-v_2) + a_2(v_2-v_3) + a_3(v_3-v_4) + a_4v_4 \\
+                  &= a_1v_1 + (a_2-a_1)v_2 + (a_3-a_2)v_3 + (a_4-a_3)v_4
+            \end{align*}
+            therefore $u \in \mspan{v_1, v_2, v_3, v_4}$.
+
+            Thus we have 
+            \[ \mspan{v_1, v_2, v_3, v_4} = \mspan{ v_1-v_2, v_2-v_3, v_3-v_4, v_4}.\]
+        \end{solution}
+    \item Verify the assertions in Example 2.18.
+        \begin{solution}
+            \begin{enumerate}[label=(\alph*)]
+                \item \textcolor{black}{A list $v$ of one vector $v \in V$ is linearly independent if and only if $v \neq 0$.}
+                    First suppose $v$ is linearly independent and $v = 0$, for any $a \in \F$, we have $av=0$, therefore $v$ is linearly dependent, which is
+                    a contradict.
+
+                    If $v \neq 0$, the solution of equation $av = 0$, for $a \in \F$ is $a = 0$, therefore $v$ is linearly independent.
+                \item \textcolor{black}{A list of two vectors in $V$ is linearly independent if and only if neither vector is a scalar multiple of the other.}
+                    Suppose these two vectors are $u$ and $v$. If one is a scalar multiple of another, assume that $u = \lambda v$ for $\lambda \neq 0$,
+                    we have 
+                    \[ -u + \lambda v = 0\]
+                    which means that $\{u,v\}$ is not linearly independent.
+
+                    Now we assume that neither of $u$ and $v$ is a scalar multiple of the other and $\{u,v\}$ is linearly dependent, which menns there are nonzero 
+                    $a_1, a_2$ with 
+                    \[ a_1 u + a_2v = 0,\]
+                    we can easy suppose that $a_1 \neq 0$, we have 
+                    \[ u = -(a_2/a_1)v\]
+                    which is a contradict to our assumption.
+                \item \textcolor{black}{$(1,0,0,0),(0,1,0,0),(0,0,1,0)$ is linearly independent in $\F^4$.}
+                    Let $a_1, a_2, a_3$ to be the coeffecients which make the sum of $(1,0,0,0),(0,1,0,0),(0,0,1,0)$ be zero, \ie, 
+                    \[ a_1(1,0,0,0) + a_2(0,1,0,0)+a_3(0,0,1,0) =0,\]
+                    which is 
+                    \[ (a_1,a_2,a_3,0) = 0, \]
+                    therefore 
+                    \[ a_1 =0, \qquad a_2=0, \qquad a_3=0.\]
+                \item \textcolor{black}{The list $1, z, \ldots, z^m$ is linearly independent in $\mathcal{P}(\F)$ for each nonnegative integer $m$.}
+                    When $m=0$, this list is $1$ which is linearly independent, now suppose the list is linearly independent for $m=0,\ldots k$,
+                    let 
+                    \[ a_0 + a_1z + \dots + a_{k+1}z^{k+1} = 0,\]
+                    let $z = 0$ we have $a_0=0$, the equation above is same with 
+                    \[ a_1 z + \dots + a_{k+1}z^{k+1} = z(a_1 + \dots + a_{k+1}z^k) = 0,\]
+                    which is same that 
+                    \[ a_1 + \dots + a_{k+1}z^k = 0,\]
+                    since $1, \ldots, z^{k}$ is linearly independent as we assumed, we have 
+                    \[ a_1 = \dots = a_{k+1} = 0, \]
+                    with 
+                    \[ a_0 = 0, \]
+                    we conclude that $1 ,\dots, z^{k+1}$ is linearly independent.
+            \end{enumerate}
+        \end{solution}
+    \item Find a number $t$ such that 
+        \[ (3,1,4), (2,-3,5), (5,9,t)\]
+        is not linearly independent in $\R^3$.
+        \begin{solution}
+            Let $t = 2$, we have 
+            \[ 3(3,1,4) + (-2)(2,-3,5) + (-1)(5,9,2) = (0,0,0),\]
+            which means the list is not linearly independent.
+        \end{solution}
+    \item Verify the assertion in the second bullet point in Example 2.20.
+        \begin{solution}
+            \textcolor{black}{The list $(2,3,1), (1,-1,2), (7,3,c)$ is linearly dependent in $\F^3$ if and only if $c=8$, as you should verify.}
+
+            If $c = 8$, with the first bullet point we know it is linearly dependent.
+            
+            Now suppose $c \neq 8$ and it is linearly dependent, 
+            let $a_1,a_2,a_3$ be the coeffecients with 
+            \[ a_1(2,3,1) + a_2(1,-1,2) + a_3(7,3,c) = 0,\]
+            which is same as 
+            \[
+                \begin{cases}
+                    2a_1 + a_2 + 7a_3 &= 0 \\
+                    3a_1 - a_2 + 3a_3 &= 0 \\
+                    a_1 + 2a_2 + ca_3 &= 0
+                \end{cases},
+            \]
+            the first equation multiple by $7$ add the second equation multiple by $-3$ add the third equation multiple by $-1$, we 
+            have 
+            \[ (40-5c)a_3 = 0, \]
+            since $c \neq 8$, we have $a_3 = 0$, substitue it to the equations above, we have $a_1 = a_2 = 0$, therefore 
+            it's linearly independent, which is contradict.
+        \end{solution}
+    \item \begin{enumerate}[label=(\alph*)]
+            \item Show that if we think of $\mC$ as a vector space over $\R$, then the list $(1+i, 1-i)$ is linearly independent.
+            \item Show that if we think of $\mC$ as a vector space over $\mC$, then the list $(1+i, 1-i)$ is linearly dependent.
+        \end{enumerate}
+        \begin{solution}
+            \begin{enumerate}[label=(\alph*)]
+                \item Suppose $a_1, a_2 \in \R$ with 
+                    \[ a_1 (1+i) + a_2 (1-i) = 0, \]
+                    it is same with 
+                    \[ 
+                        \begin{cases}
+                            a_1 + a_2 &= 0\\
+                            a_1 - a_2 &= 0
+                        \end{cases},
+                    \]
+                    which has only solution 
+                    \[ a_1 = 0, \qquad a_2 = 0,\]
+                    thus it is linearly independent.
+                \item We can find $a_1 = 1+i, a_2 = 1-i \in \mC$, that 
+                    \[ a_1 (1+i) + a_2(1-i) = 2i - 2i = 0,\]
+                    therefore it is linearly dependent.
+            \end{enumerate}
+        \end{solution}
+    \item Suppose $v_1, v_2, v_3, v_4$ is linearly independent in $V$. Prove that the list 
+        \[ v_1-v_2, v_2-v_3,v_3-v_4,v_4\]
+        is also linearly independent.
+        \begin{solution}
+            Assume that $ v_1-v_2, v_2-v_3,v_3-v_4,v_4$ is linearly dependent, there are nonzero $a_1, a_2, a_3, a_4$ with 
+            \[ a_1 (v_1-v_2) + a_2(v_2-v_3) + a_3(v_3-v_4) + a_4v_4 = 0,\]
+            which is same with
+            \[ a_1v_1 + (a_2-a_1)v_2 + (a_3-a_2)v_3 + (a_4-a_3)v_4 = 0,\]
+            since $v_1, v_2, v_3, v_4$ is linearly independent, therefore 
+            \[ 
+                \begin{cases}
+                    a_1 &= 0 \\
+                    a_2 - a_1 &= 0 \\
+                    a_3 - a_2 &= 0 \\
+                    a_4 - a_3 &= 0
+                \end{cases},
+            \]
+            which means 
+            \[ a_1 = a_2 = a_3 = a_4 = 0 ,\]
+            which is a contradict to our assumption (that $a_1, a_2, a_3, a_4$ are nonzero).
+        \end{solution}
+    \item Prove or give a counterexample: If $v_1, v_2, \ldots, v_m$ is a linearly independent list of vectors in $V$, then 
+        \[5v_1-4v_2, v_2,v_3,\ldots, v_m\]
+        is linearly independent.
+        \begin{solution}
+            Assume that it is linearly dependent, therefore there are nonzero $a_1, \ldots, a_m$ that 
+            \[ a_1(5v_1-4v_2) + a_2v_2 + \dots + a_mv_m = 0 ,\]
+            which can be formed as 
+            \[ 5a_1v_1 + (a_2-4a_1)v_2 + a_3v_3 + \dots + a_mv_m = 0,\]
+            since $v_1, \ldots, v_m$ is linearly independent, we have 
+            \[
+                \begin{cases}
+                    5a_1 &= 0 \\
+                    a_2 - 4a_1 &= 0 \\
+                    a_3 &= 0 \\
+                    \vdots \\
+                    a_m &= 0
+                \end{cases},
+            \]
+            from the first equaiton $5a_1 = 0$ we have $a_1=0$, substitute it to the second equation $a_2-4a_1 = 0$, we have $a_2 = 0$, 
+            therefore 
+            \[ a_1 = a_2 = \dots = a_m = 0,\]
+            which is a contradict to our assumption.
+
+            Thus, this list is linearly independent.
+        \end{solution}
+    \item Prove or give a counterexample: If $v_1, v_2, \ldots, v_m$ is a linearly independent list of vectors in $v$ and $\lambda \in \F$ with 
+        $\lambda \neq 0$, then $\lambda v_1, \lambda v_2, \ldots, \lambda v_m$ is linearly independent.
+        \begin{solution}
+            Suppose $a_1, \ldots, a_m \in \F$ that 
+            \[ a_1\lambda v_1 + \dots + a_m \lambda v_m = 0,\]
+            since $v_1, \ldots, v_m$ is linearly independent, means 
+            \[a_i\lambda = 0, \qquad i = 1, \ldots, m,\]
+            as $\lambda \neq 0$, we have 
+            \[ a_i =0, \qquad i=1,\ldots,m,\]
+            thus, the list is linearly independent.
+        \end{solution}
+    \item Prove or give a counterexample: If $v_1, v_2, \ldots, v_m$ and $w_1, \ldots, w_m$ are linearly independent lists of vectors in $\V$,
+        then $v_1 + w_1, \ldots, v_m + w_m$ is linearly independent.
+        \begin{solution}
+            Let 
+            \[ v_1 = (1,0), \qquad v_2 = (0,1), \qquad w_1=(0,1), \qquad w_2=(1,0),\]
+            it is easy to verify that $v_1, v_2$ is linearly independent and $w_1, w_2$ is linearly independent,
+            but $v_1+w_1, v_2+w_2$ which is 
+            \[ (1,1), (1,1)\]
+            is linearly dependent.
+        \end{solution}
+    \item Suppose $v_1, \ldots, v_m$ is linearly independent in $V$ and $W \in V$. Prove that if $v_1 + w, \ldots, v_m +w$ is linearly dependent, 
+        then $w \in \mspan{v_1,\ldots,v_m}$.
+        \begin{solution}
+            Since $v_1 + w, \ldots, v_m + w$ are linearly dependent, which means there are nonzero $a_1, \ldots, a_m$ with 
+            \[ a_1(v_1+w) + \dots + a_m(v_m + w)  = 0,\]
+            let $S = a_1 + \dots + a_m$, the equation above is same with 
+            \[ a_1v_1 + \dots + a_m v_m + Sw = 0,\]
+            we have $S \neq 0$, or the equation above will be same with 
+            \[ a_1 v_1 + \dots + a_mv_m = 0,\]
+            and $v_1, \ldots v_m$ is linearly independent, implies 
+            \[ a_1=\dots =a_m=0,\]
+            which is a contradict with our assumption.
+            Since $S \neq 0$, we can formed $w$ as 
+            \[ w = \dfrac{-a_1}{S}v_1 + \dots + \dfrac{-a_m}{S}v_m ,\]
+            \ie, 
+            \[ w \in \mspan{v_1, \ldots, v_m}.\]
+        \end{solution}
+    \item Suppose $v_1, \ldots, v_m$ is linearly independent in $V$ and $w \in V$. Show that $v_1, \ldots, v_m, w$ is linearly independent if and only if 
+        \[ w \notin \mspan{v_1, \ldots, v_m}.\]
+        \begin{solution}
+            First we suppose that $v_1, \ldots, v_m, w$ is linearly independent and $w \in \mspan{v_1, \ldots, v_m}$,
+            therefore 
+            \[ w = a_1 v_1 + \dots + a_m v_m ,\]
+            \ie, 
+            \[ a_1v_1 + dots + a_mv_m - w = 0,\]
+            which means $v_1, \ldots, v_m, w$ is linearly dependent, which is contradict.
+
+            Now we suppose $w \notin \mspan{v_1, \ldots, v_m}$ and $v_1, \ldots, v_m, w$ is linearly dependent, therefore there are 
+            nonzero $a_1, \ldots, a_m, b$ that 
+            \[ a_1 v_1 + \dots + a_mv_m + bw = 0,\]
+            we have $b \neq 0$, or the equation above will be 
+            \[ a_1v_1 + \dots + a_mv_m = 0,\]
+            as $v_1, \ldots, v_m$ is linearly independent, implies that 
+            \[ a_1 = \dots = a_m = 0,\]
+            which is a contradict, since $b \neq 0$, we have 
+            \[ w = \dfrac{-a_1}{b}v_1 + \dots + \dfrac{-a_m}{b}v_m,\]
+            which means $w \in \mspan{v_1, \ldots, v_m}$, which is a contradict.
+        \end{solution}
+    \item Explain why no list of four polynomials spans $\mathcal{P}_4(\F)$.
+        \begin{solution}
+            We know that the list $1, z, z^2, z^3, z^4$ is linearly independent and they are in $\mathcal{P}_4(\F)$,
+            with the fact that 
+            \[ \text{\textit{Length of linearly independent list} $\leq$ \textit{Length of span list}}.\]
+            We know the length of span list of $\mathcal{P}_4(\F)$ is at least $5$.
+        \end{solution}
+    \item \hypertarget{2A-13}{Prove} that $V$ is infinite-dimensional if and only if there is a sequence $v_1, v_2, \ldots$ of vectors in $V$ such that $v_1, \ldots, v_m$ is 
+        linearly independent for every positive integer $m$.
+        \begin{solution}
+            Firts we will show that if $V$ is infinite-dimensional, then such a list exists: 
+            we can use induction method in $m$,
+            \begin{itemize}
+                \item If $m=1$, there is non-zero elements in $V$, we choose $v_1 \neq 0 \in V$, therefore $v_1$ is linearly independent;
+                \item Now suppose for $m=1,\ldots,k$, we can find $v_1, \ldots, v_k$ is linearly independent;
+                \item For $m = k+1$, we can find $v_{k+1} \in V$ which can not be formed as linear combination of $v_1, \ldots, v_k$, 
+                    or we have $\mspan{v_1, \ldots, v_k} = V$, which means $V$ is finit-dimensional, is contradict. Since $v_{k+1}$ 
+                    can not be formed as linear combination of $v_1, \ldots, v_k$, means $v_1, \ldots, v_k, v_{k+1}$ is linearly independent.
+            \end{itemize}
+
+            Now we will show the inversely direction, that if such a list exist, that $V$ is infinite-dimensional:
+            As fact it is easy, suppose that $V$ is finite-dimensional and $v_1, \ldots, v_k$ spans $V$, therefore there is 
+            not linearly independent list with length greater than $k$, which is contradict to our assumption.
+        \end{solution}
+    \item Prove that $\F^{\infty}$ is infinite-dimensional.
+        \begin{solution}
+            
+        \end{solution}
+    \item Prove that the real vector space of all continuous real-valued functions on the interval $[0,1]$ is infinite-dimensional.
+    \item Suppose $p_0,p_1,\ldots,p_m$ are polynomials in $\mathcal{P}_m(\F)$ such that $p_j(2)=0$ for each $j$.
+        Prove that $p_0,p_1,\ldots,p_m$ is not linearly independent in $\mathcal{P}_m(\F)$.
+
+\end{enumerate}
+
+\subsection{Bases}
+
+\begin{enumerate}
+    \item Find all vector spaces that have exactly one basis.
+        \begin{solution}
+            The only vector space that has exactly one basis is $\{0\}$ and it is easy to verify. 
+
+            Now suppose there is a vector space $U \neq \{0\}$ that has only one basis, assume the basis is 
+            \[ v_1, \ldots, v_m .\]
+            it is easy to verify that $v_i \neq 0$, 
+            and we will show that 
+            \[ v_1 + v_2, v_2, \ldots, v_m\] 
+            is also a basis of U:
+            let 
+            \[ a_1 (v_1+v_2) + a_2v_2 + \dots + a_mv_m = 0,\]
+            which is same with 
+            \[ a_1v_1 + (a_1+a_2)v_2 + \dots + a_mv_m = 0,\]
+            since $v_1, \ldots, v_m$ is basis therefore they are linearly independent, \ie, 
+            \[ a_1 = \dots = a_m = 0,\]
+            which means $v_1+v_2, v_1, \ldots, v_m$ is linearly independent.
+
+            since $v_1, \ldots, v_m$ spans $U$, means for any $u \in U$, we have 
+            \[ u = a_1v_1 + \dots + a_mv_m = a_1(v_1+v_2) + (a_2-a_1)v_2 + \dots + a_mv_m,\]
+            means $v_1+v_2, v_2, \ldots, v_m$ spans $U$.
+
+            Thus $v_1+v_2, v_2, \ldots, v_m$ is basis of $U$, but it is different with $v_1, \ldots, v_m$.
+        \end{solution}
+    \item Verify all the assertions in Example 2.28.
+        \begin{solution}
+            \begin{enumerate}[label=(\alph*)]
+                \item \textcolor{black}{The list $(1,0,\ldots,0),(0,1,0,\ldots,0),(0,\ldots,0,1)$ is a basis of $\F^n$, called the \textbf{standard basis} of $\F^n$.}
+                
+                    For any $(x_1,\ldots, x_n) \in \F^n$, we can find 
+                    \[ (x_1, \ldots, x_n) = x_1(1,0,\ldots) + \dots + x_n(0,\ldots,1),\]
+                    therefore these list spans $\F^n$.
+
+                    Suppose the we have 
+                    \[ a_1 (1,0,\ldots,0) + \dots + a_n(0,\ldots,1) = (a_1, \ldots, a_n) = 0,\]
+                    which means 
+                    \[ a_1 = \ldots = a_n = 0,\]
+                    therefore this list is linearly independent.
+                \item \textcolor{black}{The list $(1,2),(3,5)$ is a basis of $\F^2$.}
+                
+                    For any $(x,y) \in \F$, we can find $a_1, a_2$ with 
+                    \[ a_1(1,2) + a_2(3,5) = (x,y),\]
+                    since the equations 
+                    \[
+                        \begin{cases}
+                            a_1 + 3a_2 &= x \\
+                            2a_1 + 5a_2 &=y 
+                        \end{cases}
+                    \]
+                    has solution 
+                    \[ a_1 = 3y-5x, \qquad a_2=2x-y.\]
+
+                    Let $x=0,y=0$, we have 
+                    \[ a_1 = a_2 = 0,\]
+                    means this list is linearly independent.
+
+                    Thus this list is a basis of $\F^2$.
+                \item \textcolor{black}{The list $(1,2,-4), (7,-5,6)$ is linearly independent in $\F^3$ but is not a basis of $\F^3$ because it does not span $\F^3$.}
+                
+                    We can prove that this list is linearly independent since the equations
+                    \[ 
+                        \begin{cases}
+                            a_1 + 7a_2 &= 0 \\
+                            2a_1 - 5a_2 &= 0\\
+                            -4a_1 + 6a_2 &= 0
+                        \end{cases}
+                    \]
+                    has only solution 
+                    \[ a_1 = a_2 = a_3 = 0.\]
+
+                \item \textcolor{black}{The list $(1,1,0),(0,0,1)$ is a basis of $\{(x,x,y)\in \F^3: x,y \in \F\}$.}
+                
+                        It is easy to verigy that the list spans the vector space and it is linearly independent.s
+                \item \textcolor{black}{The list $(1,-1,0),(1,0,-1)$ is a basis of \[\{(x,y,z)\in \F^3:x+y+z=0\}.\]}
+
+                        It is easy to verify this list is linearly independent, now we will show that it spans the vector space:
+                        since for any $(x,y,z)$ in this vector space, we can find 
+                        \[ a_1 = -y,\qquad a_2 = -z\]
+                        that 
+                        \[ a_1(1,-1,0) + a_2(1,0,-1) = (x,y,z).\]
+                \item \textcolor{black}{The list $1, z, \ldots, z^m$ is a basis of $\mathcal{P}_m(\F)$.}
+                
+                    We have prove that $1,z,\ldots,z^m$ is linearly independent, since it also spans $\mathcal{P}_m(\F)$, therefore it is a basis.
+            \end{enumerate}
+        \end{solution}
+    \item \begin{enumerate}[label=(\alph*)]
+            \item Let $U$ be the subspace of $\R^5$ defined by 
+                \[ U = \{(x_1,x_2,x_3,x_4,x_5) \in \R^5:x_1=3x_2 \text{ and } x_3=7x_4\}.\]
+                Find a basis of $U$.
+            \item Extend the basis in part (a) to a basis of $\R^5$.
+            \item Find a subspace $W$ of $\R^5$ such that $\R^5 = U \oplus W$.
+        \end{enumerate}
+        \begin{solution}
+            \begin{enumerate}[label=(\alph*)]
+                \item The list $(3,1,0,0,0),(0,0,7,1,0), (0,0,0,0,1)$ is a basis of this vector space.
+                \item Since $(1,0,0,0,0)$ is not in the span of previous list, we can add $(1,0,0,0,0)$; then we find $(0,0,1,0,0)$ is not in the 
+                    span of the previous list, therefore 
+                    \[(3,1,0,0,0), (0,0,7,1,0),(0,0,0,0,1),(1,0,0,0,0),(0,0,1,0,0)\]
+                    is a basis of $\R^5$.
+                \item let $W = \mspan{(1,0,0,0,0), (0,0,1,0,0)}$, we have $U \oplus W = \R^5$.
+            \end{enumerate}
+        \end{solution}
+    \item Prove or disprove: there exists a basis $p_0, p_1, p_2, p_3$ of $\mathcal{P}_3(\F)$ such that none of the polynomials $p_0, p_1, p_2, p_3$ has 
+        degree $2$.
+        \begin{solution}
+            We will show that the polynomial list 
+            \[ 1, x, x^3-x^2, x^3, x^4 \]
+            satisfies the requirement, since none of the these polynomials has degree $2$, now we will show that it is a basis:
+            since the list has length $5$, we only need to show that it is linearly independent: suppose that 
+            \[ a_1 + a_2x + a_3(x^3-x^2) + a_4x^3 + a_5x^4 = 0,\]
+            observed that only $a_5x^4$ has term $x^4$ implies $a_5 = 0$ also we have 
+            \[ a_1 = a_2 =0,\]
+            and only $a_3(x^3-x^2)$ has term $x^2$ implies that $a_2=0$, means $a_3 =0$, too, thus 
+            it is linearly independent as desired.
+        \end{solution}
+    \item Suppose $v_1, v_2, v_3, v_4$ is a basis of $V$. Prove that 
+        \[ v_1 + v_2, v_2+v_3, v_3+v_4, v_4\]
+        is also a basis of $V$.
+        \begin{solution}
+            We have 
+            \[ \dim{V} = 4,\]
+            means we only need to show that $v_1 + v_2, v_2+v_3, v_3+v_4, v_4$ is linearly independent, then it is a basis of $V$ since it has the right length.
+            suppose that 
+            \[ a_1(v_1+v_2) + a_2(v_2 + v_3) + a_3(v_3+v_4) + a_4v_4 = 0,\]
+            which can be formed as 
+            \[ a_1v_1 + (a_1 + a_2)v_2 + (a_2 + a_3)v_3 + (a_3 + a_4)v_4 = 0,\]
+            since $v_1, v_2, v_3, v_4$ is linearly independent, then we have 
+            \[ a_1 = 0, \ a_1 + a_2 =0, \ a_2 + a_3 = 0, \ a_3 + a_4 = 0,\]
+            which implies 
+            \[ a_1 = a_2 = a_3 = a_4 = 0,\]
+            as we desired.
+        \end{solution}
+    \item Prove or give a counterexample: If $v_1, v_2, v_3, v_4$ is a basis of $V$ and $U$ is a subspace of $V$ such that 
+        $v_1,v_2 \in U$ and $v_3 \notin U$ and $v_4 \notin U$, then $v_1, v_2$ is a basis of $U$.
+        \begin{solution}
+            Consider $U = \mspan{v_1, v_2, v_3 + v_4}$, we will show that $U$ satisfies the conditions above, but $v_1,v_2$ is not the basis of $U$.
+
+            It is obviousely that $v_1,v_2 \in U$, soppuse that $v_3 \in U$, we have $v_4 \in U$, means there is a linearly independent list with length $4$, 
+            \ie, $v_1, v_2, v_3, v_4$ but the span list has length $3$, which is imposible, therefore 
+            \[ v_3 \notin U,\]
+            with same method, we have 
+            \[ v_4 \notin U,\]
+            thus $U$ satisfies the condition, and we know that the element $v_3 + v_4$ can not be formed as linear combination of $v_1$ and $v_2$, therefore 
+            $v_1, v_2$ is not a basis of $U$.
+        \end{solution}
+    \item Suppose $U$ and $W$ are subspaces of $V$ such that $V = U \oplus W$. Suppose also that $u_1, \ldots, u_m$ is a basis of $U$ 
+        and $w_1, \ldots, w_n$ is a basis of $W$. Prove that 
+        \[ u_1, \ldots,u_m, w_1, \ldots, w_n\]
+        is a basis of $V$.
+        \begin{solution}
+            First we will show that 
+            \[ V = \mspan{u_1, \ldots, u_m, w_1, \ldots, w_n},\]
+            since $V = U \oplus W$, we suppose that $p \in V$, therefore $p$ can be formed as 
+            \[ p = u + w, \qquad u \in U, w \in W,\]
+            and with $u_1, \ldots u_m$ is basis of $U$ and $u$ is an element of $U$, we have 
+            \[ u = a_1 u_1 + \dots + a_mu_m,\]
+            and simily we have 
+            \[ w = b_1w_1 + \dots + b_nw_n,\]
+            therefore 
+            \[ p = a_1u_1 + \dots + a_mu_m + b_1w_1 + \dots + b_nw_n,\]
+            means 
+            \[ p \in \mspan{u_1, \ldots, u_m, w_1, \ldots, w_n}.\]
+            Then we consider $p$ as an element of the span of list $u_1, \ldots, u_m, w_1, \ldots, w_n$, \ie, 
+            \[ p = a_1u_1 + \dots + a_mu_m + b_1w_1 + \dots + b_nw_n ,\]
+            since $u_1, \ldots, u_m$ is basis of $U$, we have 
+            \[ a_1u_1 + \dots + a_mu_m \in U, \]
+            let it to be $u$, \ie, 
+            \[ u = a_1u_1 + \dots + a_mu_m \in U,\]
+            similarly we have 
+            \[ w = b_1w_1 + \dots + b_nw_n \in W,\]
+            therefore 
+            \[ p \in U + W = V,\]
+            thus we have 
+            \[ V = \mspan{u_1, \ldots, u_m, w_1, \ldots, w_n}.\]
+
+            Since $U+W$ is a direct sum and therefore $u_1, \ldots, u_m, w_1, \ldots, w_n$ is linearly independent, implies that 
+            \[ u_1, \ldots, u_m, w_1, \ldots, w_n\]
+            is a basis of $V$.
+        \end{solution}
+\end{enumerate}
+
+\subsection{Dimension}
+\begin{enumerate}
+    \item Suppose $V$ is finite-dimensional and $U$ is a subspace of $V$ such that $\dim{U} = \dim{V}$. Prove that $U = V$.
+    \item Show that the subspaces of $\R^2$ are precisely $\{0\}$, $\R^2$, and all lines in $\R^2$ through the origin.
+    \item Show that the subspaces of $\R^3$ are precisely $\{0\}$, $\R^3$, and all lines in $\R^3$ through the origin, and all
+        planes in $\R^3$ through the origin.
+    \item \begin{enumerate}[label=(\alph*)]
+            \item Let $U = \{p \in \mathcal{P}_4(\F): p(6)=0.\}$. Find a basis of $U$.
+            \item Extend the basis in part (a) to a basis of $\mathcal{P}_4(\F)$.
+            \item Find a subspace $W$ of $\mathcal{P}_4(\F)$ such that $\mathcal{P}_4(\F) = U \oplus W$.
+        \end{enumerate}
+    \item \begin{enumerate}[label=(\alph*)]
+            \item Let $U = \{p \in \mathcal{P}_4(\R):p''(6)=0\}$.Find a basis of $U$.
+            \item Extend the basis in part (a) to a basis of $\mathcal{P}_4(\R)$.
+            \item Find a subspace $W$ of $\mathcal{P}_4(\R)$ such that $\mathcal{P}_4(\R) = U \oplus W$.
+        \end{enumerate}
+    \item \begin{enumerate}[label=(\alph*)]
+            \item Let $U = \{p \in \mathcal{P}_4(\R):p(2)=p(5)=p(6)\}$.Find a basis of $U$.
+            \item Extend the basis in part (a) to a basis of $\mathcal{P}_4(\R)$.
+            \item Find a subspace $W$ of $\mathcal{P}_4(\R)$ such that $\mathcal{P}_4(\R) = U \oplus W$.
+        \end{enumerate}
+    \item \begin{enumerate}[label=(\alph*)]
+            \item Let $U = \{p \in \mathcal{P}_4(\R):\int_{-1}^{1} p =0\}$.Find a basis of $U$.
+            \item Extend the basis in part (a) to a basis of $\mathcal{P}_4(\R)$.
+            \item Find a subspace $W$ of $\mathcal{P}_4(\R)$ such that $\mathcal{P}_4(\R) = U \oplus W$.
+        \end{enumerate}
+    \item Suppose $v_1,\ldots,v_m$ is linearly independent in $V$ and $w \in V$. Prove that 
+        \[ \dim{\mspan{v_1+w,\ldots,v_m+w}} \geq m - 1.\]
+    \item Suppose $p_0,p_1,\ldots,p_m \in \mathcal{P}(\F)$ are such that each $p_j$ has degree $j$. Prove that 
+        $p_0,p_1,\ldots,p_m$ is a basis of $\mathcal{P}_m(\F)$.
+    \item Suppose that $U$ and $W$ are subspaces of $\R^8$ such that $\dim{U} = 3$, $\dim{W} = 5$, and 
+        $U + W = \R^8$. Prove that $\R^8 = U \oplus W$.
+    \item Suppose $U$ and $W$ are both five-dimensional subspaces of $\R^9$. Prove that $U \cap W \neq \{0\}$.
+    \item Suppose $U$ and $W$ are both $4$-dimensional subspaces of $\mC^6$. Prove that there exist two vectors 
+        in $U \cap W$ such that neigher of these vectors is a scalar multiple of the other.
+    \item Suppose $U_1, \ldots, U_m$ are finite-dimensional subspaces of $V$. Prove that 
+        $U_1 + \dots + U_m$ is finite-dimensional and 
+        \[ \dim{(U_1 + \dots + U_m)} \leq \dim{U_1} + \dots + \dim{U_m}. \]
+        \begin{solution}
+            First We will show that \textbf{the sum of two finite-dimensional vector space is a finite-dimensional.}
+
+            Suppose $U$ and $V$ are these two finite-dimensional vector space, therefore they have basis, since there are span list of them and
+            span list include basis, suppose the that $u_1, \ldots, u_n$ and $v_1, \ldots, v_m$ are basis of $U$ and $V$, respectively. Now We will 
+            show that 
+            \[ u_1, \ldots, u_n, v_1, \ldots, v_m \]
+            spans $U+V$: for any element $p \in U+V$, we have $p = u+v, u \in U, v \in V$, and we have 
+            \[ u = a_1u_1 + \dots + a_nu_n, \qquad v = b_1v_1 + \dots + b_mv_m ,\]
+            therefore 
+            \[ p = a_1u_1 + \dots + a_nu_n + b_1v_1 + \dots + b_mv_m \]
+            which is an element of $\mspan{u_1, \ldots, u_n, v_1, \ldots, v_m}$, and we can prove that for any element 
+            in the $\mspan{u_1, \ldots, u_n, v_1, \ldots, v_m}$, it is also a element of $U + v$, therefore 
+            \[ U+V = \mspan{u_1, \ldots, u_n, v_1, \ldots, v_m},\]
+            \ie, $U +V$ is finite-dimensional.
+
+            Use the inductive method, we can prove that $U_1 + \dots + U_m$ is finite-dimensional.
+
+            In order to prove 
+            \[ \dim{(U_1 + \dots + U_m)} \leq \dim{U_1} + \dots + \dim{U_m},\]
+            we show that for any finite-dimensional vector space $U$ and $V$, we have 
+            \[ \dim{(U+V)} = \dim{U} + \dim{V} - \dim{(U \cap V)} \leq \dim{U} + \dim{V}\]
+            since $\dim{U \cap V} \geq 0$, therefore 
+            \begin{align*}
+                \dim{(U_1 + \dots + U_m)} &\leq \dim{U_1} + \dim{(U_2 + \dots + U_m)} \\
+                                          &\leq \dots \\
+                                          &\leq \dim{U_1} + \dots + \dim{U_m}.
+            \end{align*}
+        \end{solution}
+    \item Suppose $V$ is finite-dimensional, with $\dim{V} = n \geq 1$. Prove that there exist $1$-dimensional subspaces $U_1, \ldots, U_n$ of 
+        $V$ such that 
+        \[ V = U_1 \oplus \dots \oplus U_n. \]
+        \begin{solution}
+            In order to show this, we prove another satetement: \textbf{For give $V$, we can find $1$-dimensional subsapce $U$ and $(n-1)$-dimensional $W$, that}
+            \[ V = U \oplus W.\]
+            We suppose that list 
+            \[ v_1, \ldots, v_n\]
+            is basis of $V$, let $U = \mspan{v_1}$ and $W = \mspan{v_2, \ldots,v_m}$, From 2.34 we know that 
+            \[ V = U \oplus W,\]
+            continue this method, we can prove that 
+            \[ V = \mspan{v_1} + \dots + \mspan{v_n} .\]
+        \end{solution}
+    \item Suppose $U_1, \ldots, U_m$ are finite-dimensional subspaces of $V$ such that $U_1 + \dots + U_m$ is direct sum. 
+        Prove that $U_1 \oplus \dots \oplus U_m$ is finite-dimensional and 
+        \[ \dim{U_1 \oplus \dots \oplus U_m} = \dim{U_1} + \dots + \dim{U_m}. \]
+        \begin{solution}
+            If we can prove that when $m = 2$, the statement hold, then then statement hold for any positive interge $m$.
+
+            Suppose that $u_1,\ldots,u_n$ and $v_1,\ldots, v_m$ are the basis of $U_1$ and $U_2$, respectively, then 
+            \[ u_1, \ldots, u_n, v_1, \ldots, v_m\]
+            spans $U_1 + U_2$, which means $U+V$ is finite-dimensional.
+            
+            Since $U_1 + U_2 $ is direct sum, we have $U_1 \cap U_2 = \{0\}$, \ie, $\dim{(U_1 \cap U_2)} = 0$ therefore 
+            \[ \dim{(U_1 \oplus U_2)} = \dim{U_1} + \dim{U_2}.\]
+        \end{solution}
+    \item You might guess, by analogy with the formula for the number of elements in the union of three subsets of a finite set, 
+        that if $U_1, U_2, U_3$ are subspaces of a finite-dimensional vector space, then 
+        \begin{align*}
+            \dim{(U_1 + U_2 + U_3)} =& \dim{U_1} + \dim{U_2} + \dim{U_3} \\
+                                   & - \dim({U_1 \cap U_2)} - \dim{(U_1 \cap U_3)} - \dim{(U_2 \cap U_3)} \\
+                                   & + \dim{(U_1 \cap U_2 \cap U3)}.
+        \end{align*}
+        Prove this or give a counterexample.
+        \begin{solution}
+            We will give a counterexample:
+            Consider that 
+            \[ U_1=\{(x,x)\in \R^2:x\in \R\},\ U_2=\{(x,0)\in \R^2: x\in \R\}, \ U_3=\{(0,x)\in \R^2: x\in \R\},\]
+            we have 
+            \[ \dim{U_1} = \dim{U_2} = \dim{U_3} = 1,\]
+            and since $U_1 + U_2 + U_3 = \R^2$, we have 
+            \[ \dim{(U_1 + U_2 + U_3)} = 2,\]
+            and 
+            \[ U_1 \cap U_2 = U_1 \cap U_3 = U_2 \cap U_3 = U_1 \cap U_2 \cap U_3 = \{0\},\]
+            we have 
+            \[ \dim{(U_1\cap U_2)} = \dim{(U_1 \cap U_3)} = \dim{(U_2 \cap U_3)} = \dim{(U_1 \cap U_2 \cap U_3)} = 0,\]
+            therefore the left-hand side of the equation is $2$, the right-hand side is $2$, since 
+            \[ 3 \neq 2,\]
+            we conclude that the equation does not hold all the time.
+        \end{solution}
+\end{enumerate}

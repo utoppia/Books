@@ -1,0 +1,670 @@
+\section{Linear Maps}
+
+\subsection{The Vector Space of Linear Map}
+
+\begin{enumerate}
+    \item Suppose $b,c \in \R$. Define $T: \R^3 \to \R^3$ by 
+        \[ T(x,y,z) = (2x-4y+3z+b, 6x+cxyz).\]
+        Show that $T$ is linear if and only if $b=c=0$.
+    \item Suppose $b,c \in \R$. Define $T: \mathcal{P}(\R) \to \R^2$ by 
+        \[ Tp = \left(3p(4)+5p'(6)+bp(1)p(2), \int_{-1}^{2}x^3p(x)dx + c\sin p(0)\right).\]
+        Show that $T$ is linear if and only if $b = c = 0$.
+    \item Suppose $T \in \mathcal{L}(\F^n, \F^m)$. Show that there exist scalars $A_{j,k} \in \F$ for $j=1,\ldots,m$ and $k=1,\ldots,n$ such that 
+        \[T(x_1,\ldots,x_n) = (A_{1,1}x_1+\dots+A_{1,n}x_n, \ldots, A_{m,1}x_1+\dots +A_{m,n}x_n)\]
+        for every $(x_1,\ldots,x_n) \in \F^n$.
+    \item Suppose $T \in \mathcal{L}(V,W)$ and $v_1, \ldots,v_m$ is a list of vectors in $V$ such that $Tv_1,\ldots,Tv_m$ is a linearly independent list 
+        in $W$. Prove that $v_1, \ldots, v_m$ is linearly independent.
+    \item Prove the assertion in 3.7.
+    \item Prove the assertion in 3.9.  
+    \item Show that every linear map from a $1$-dimensional vector space to itself is multiplication by some scalar. More precisely, prove that if $\dim{V}=1$
+        and $T \in \mathcal{L}(V,V)$, then there exists $\lambda \in \F$ such that $Tv = \lambda v$ for all $v \in V$.
+    \item Give an example of a function $\phi: \R^2 \to \R$ such that 
+        \[ \phi(av) = a\phi(v)\]
+        for all $a \in \R$ and all $v \in \R^2$ but $\phi$ is not linear.
+    \item Give an example of a function $\phi: \mC \to \mC$ such that 
+        \[ \phi(w+z) = \phi(w) + \phi(z)\]
+        for all $w,z \in \mC$ but $\phi$ is not linear.
+    \item Suppose $U$ is a subspace of $V$ with $U \neq V$. Suppose $S \in \mathcal{L}(U,W)$ and $S \neq 0$(which means that $Su \neq 0$ for some $u \in U$).
+        Define $T: V \to W$ by 
+        \[ Tv = 
+            \begin{cases}
+                Sv \qquad& \text{if $v \in U$}, \\
+                0 \qquad& \text{if $v \in V$ and $v \notin U$.}
+            \end{cases}
+        \]
+        Prove that $T$ is not a linear map on $V$.
+    \item Suppose $V$ is finite-dimensional. Prove that every linear map on a subspace of $V$ can be extended to a linear map on $V$.
+        In other words, show that if $U$ is a subspace of $V$ and $S \in \mathcal{L}(U,W)$, then there exists $T \in \mathcal{L}(V,W)$ such 
+        that $Tu = Su$ for all $u \in U$.
+        \begin{solution}
+            Since $U$ is a subspace of $U$, let $u_1,\ldots,u_n$ to be the basis of $U$, and it can extended to be basis of $V$, suppose it is 
+            \[ u_1, \ldots, u_n, w_1, \ldots, w_m,\]
+            We define $T: V \to W$:
+            \[ T(a_1u_1 + \dots + a_nv_n + b_1w_1 + \dots + b_mw_m) = S(a_1u_1+\dots+a_nu_n) + b_1w_1 + \dots + b_mw_m, \]
+            where $a_1,\ldots,a_n,b_1,\ldots, b_m$ are arbitrary elements of $\F$, since $u_1,\ldots,u_n,w_1,\ldots,w_m$ is a basis of $V$, therefore 
+            the equation define a function $T$ from $V$ to $V$. 
+
+            Now for $u \in U$, we have 
+            \[ u = c_1u_1 + \dots + c_nu_n, \]
+            therefore 
+            \[ Tu = Su .\]
+
+            Now we will show that $T$ is linear map, for $u, v \in V$, suppose that 
+            \[ u = a_1u_1 + \dots + a_nu_n + b_1w_1 + \dots + b_mw_m,\]
+            and 
+            \[ v = c_1u_1 + \dots + c_nu_n + d_1w_1 + \dots + d_mw_m,\]
+            we have 
+            \begin{align*}
+                T(u+v) &= T\left((a_1+c_1)u_1 + \dots + (a_n+c_n)u_n + (b_1+d_1)w_1 + \dots + (b_m+d_m)w_m\right) \\
+                       &= S\left((a_1+c_1)u_1 + \dots + (a_n+c_n)u_n \right) + (b_1+d_1)w_1 + \dots + (b_m+d_m)w_m \\
+                       &= S(a_1u_1 + \dots + a_nu_n) + b_1w_1 + \dots + b_mw_m \\
+                       &\quad + S(c_1u_1 + \dots + c_nu_n) + d_1w_1 + \dots + d_mw_m \\
+                       &= Tu + Tv,
+            \end{align*}
+            Similarly, if $\lambda \in \F$, and $v = a_1u_1 + \ldots + a_nu_n + b_1w_1 + \dots + b_mw_m$, then 
+            \begin{align*}
+                T(\lambda v) &= T\left(\lambda (a_1u_1 + \ldots + a_nu_n + b_1w_1 + \dots + b_mw_m)\right) \\
+                             &= S(\lambda a_1u_1 + dots + \lambda a_nu_n) + \lambda b_1w_1 + \dots + \lambda b_m w_m \\
+                             &= S\left(\lambda (a_1u_1 + \dots + a_nu_n)\right) + \lambda (b_1w_1 + \dots + b_mw_m) \\
+                             &= \lambda S(a_1u_1 + \dots + a_nu_n) + \lambda (b_1w_1 + \dots + b_mw_m) \\
+                             &= \lambda \left( S(a_1u_1 + \dots + a_nu_n) + b_1w_1 + \dots + b_mw_m \right) \\
+                             &= \lambda Tv,
+            \end{align*}
+            therefore $T$ is a linear map from $V$ to $V$.
+        \end{solution}
+    \item Suppose $V$ is finite-dimensional with $\dim{V} >0$, and suppose $W$ is infinite-dimensional. Prove that $\mathcal{L}(V,W)$ is infinite-dimensional.
+        \begin{solution}
+            Since $W$ is infinite-dimensional, from exercise \hyperlink{2A-13}{2A-13}, we know that there is a linearly independent list 
+            \[ w_1, \ldots, w_m \in W\] 
+            for any positive $m$. Now consider the fucntions $T_1, \ldots, T_k: V \to W$ define as:
+            \[ T_i(a_1v_1 + \ldots + a_nv_n) = a_1w_1 + \dots + a_{n-1}w_{n-1} + a_nw_{n-1+i}, \quad i=1,\ldots, k\]
+            where $a_1,\ldots,a_n$ are arbitrary elements in $\F$ and $v_1, \ldots, v_n$ is basis of $V$, it is easy to verify that $T_i$ is linear map 
+            from $V$ to $W$, Now we will prove that $T_1, \ldots, T_k$ is linearly independent:
+
+            Suppose that 
+            \[ b_1T_1 + \dots + b_kT_k = 0, \]
+            consider a special $v = v_n \in V$, we have 
+                \[ b_1T_1(v_n) + \dots b_kT_k(v_n) = b_1w_{n} + \dots + b_kw_{n+k-1}, \]
+            since $w_{n}, \ldots, w_{n+k-1}$ is linearly independent, we have 
+            \[ b_1 = \dots = b_k = 0.\]
+            
+            Obeserved that we didn't the only assumption we made on $k$ is that $k$ is a postive integer, means that $\mathcal{L}(V,W)$ is infinite-dimensional.
+        \end{solution}
+    \item Suppose $v_1, \ldots, v_m$ is a linearly \textbf{dependent} list of vectors in $V$. Suppose also $W \neq \{0\}$. Prove that there exist 
+        $w_1, \ldots, w_m \in W$ such that no $T \in \mathcal{L}(V,W)$ satisfies $Tv_k = w_k$ for each $k=1,\ldots, m$.
+        \begin{solution}
+            Since $W \neq \{0\}$, means there exists $w \in W$, which $w \neq 0$.
+            \begin{itemize}
+                \item If one of $v_1, \ldots, v_m$ is $0$, assume that $v_k=0$, consider the list $w,\ldots,w$, if such $T$ exists, we have 
+                    \[ Tv_k = w ,\]
+                    since $Tv_k = T0 = 0$, implies that 
+                    \[w = 0,\]
+                    which is contradict.
+                \item If none of $v_1, \ldots, v_m$ is $0$, there is non-zero list $a_1,\ldots,a_m$ with 
+                    \[ a_1v_1 + \ldots + a_mv_m = 0,\]
+                    since $v_1, \ldots, v_m$ is linearly dependent, consider the list 
+                    \[ w_i = 
+                        \begin{cases}
+                            \dfrac{1}{a_i}w \qquad& \text{if $a_i \neq 0$} \\
+                            w \qquad& \text{if $a_i=0$}
+                        \end{cases},
+                    \]
+                    if such $T$ exists, we have 
+                    \[ T(a_1v_1 + \dots + a_mv_m) = kw,\] 
+                    where $k$ is the number of non-zero values in $a_1,\ldots,a_m$, we have $0<k\leq m$ the left-hand side term of equation above is 
+                    \[ T(a_1v_1 + \dots + a_mv_m) = T0 = 0,\]
+                    implies 
+                    \[ kw = 0,\]
+                    means 
+                    \[w=0,\]
+                    which is contradict, too.
+            \end{itemize}
+            Thus, we can find such $w_1,\ldots, w_m$ that no $T \in \mathcal{L}(V,W)$ satisfies the condition, notice that in the prove above should provided that 
+            $W$ is a vector space.
+        \end{solution}
+    \item Suppose $V$ is finite-dimensional with $\dim{V} \geq 2$. Prove that there exist $S, T \in \mathcal{L}(V,V)$ such that $ST \neq TS$.
+        \begin{solution}
+            Since $\dim{V} \geq 2$, we suppose that $u_1, u_2, \ldots u_m$ is basis of $V$, we have 
+            \[ u_2, u_1+u_2, \ldots, u_m \in V,\]
+            therefore there is a linear map $S$ with 
+            \[ Su_1 = u_2, Su_2 = u_1 + u_2, \ldots Su_m = u_m.\]
+            Similarly, we have 
+            \[u_2, u_1-u_2, \ldots, u_m \in V,\]
+            therefore there is a linearly map $T$ with 
+            \[ Tu_1 = u_2, Tu_2 = u_1-u_2,\ldots, Tu_m = u_m,\]
+            now we have 
+            \[ TSu_1 = Tu_2 = u_1 - u_2, \qquad STu_1 = Su_2 = u_1 + u_2, \]
+            \ie, 
+            \[ TS \neq ST.\]
+        \end{solution}
+\end{enumerate}
+
+\subsection{Null Spaces and Ranges}
+
+\begin{enumerate}
+    \item Give an example of a linear map $T$ such that $\dim{\Null{T}} = 3$ and $\dim{\range{T}} = 2$.
+        \begin{solution}
+            Consider such a linear map $T: \R^5 \to \R^2$ defined by 
+            \[ T(x_1, x_2, x_3, x_4, x_5) = (x_1+x_2+x_3, x_4+x_5), \]
+            we have 
+            \[ \Null{T} = \{(x_1,x_2,x_3,x_4,x_5)\in \R^5: x_1+x_2+x_3=0 \text{ and } x_4 + x_5=0 \},\]
+            a basis of $\Null{T}$ is 
+            \[ (1,-1,0,0,0), \qquad (1,0,-1,0,0), \qquad (0,0,0,1,-1),\]
+            therefore 
+            \[ \dim{\Null{T}} = 3.\]
+            And we can easily verify that 
+            \[ \range{T} = \R^2 ,\]
+            therefore 
+            \[ \dim{\range{T}} = 2.\]
+            Thus, the linear map $T$ we defined above satisfies the conditions.
+
+            \textit{Remark.} We can get the example from the idear of \textbf{Fundamental Theorem of Linear Maps}:
+            \[ \dim{V} = \dim{\Null{T}} + \dim{\range{T}}. \]
+        \end{solution}
+    \item Suppose $V$ is a vector space and $S, T \in \lmap{V}{W}$ are such that 
+        \[ \range{S} \subset \null{T} .\]
+        Prove that $(ST)^2 = 0$.
+        \begin{solution}
+            Suppose $v \in V$, since $S, T$ are linear maps from $V$ to $V$, we have 
+            \[ Tv \in V ,\]
+            and 
+            \[ STv \in \range(S) ,\]
+            since we have $\range{S} \subset \Null{T}$, we have 
+            \[ STv \in \Null{T} ,\]
+            \ie,
+            \[ TSTv = 0, \]
+            with $S$ is a linear map means $S0 = 0$, therefore 
+            \[ STSTv = 0, \]
+            for any $v \in V$, thus 
+            \[ (ST)^2 = 0. \]
+        \end{solution}
+    \item Suppose $v_1, \ldots, v_m$ is a list of vectors in $V$. Define $T \in \lmap{\F^m}{V}$ by 
+        \[ T(z_1, \ldots, z_m) = z_1v_1 + \dots + z_mv_m .\]
+        \begin{enumerate}[label=(\alph*)]
+            \item What property of $T$ correspnods to $v_1, \ldots, v_m$ spanning $V$?
+            \item what property of $T$ corresponds to $v_1, \ldots, v_m$ being linearly independent?
+        \end{enumerate}
+        \begin{solution}
+            \begin{enumerate}[label=(\alph*)]
+                \item Since $v_1, \ldots, v_m$ spans $V$, means 
+                    \[ \range{T} = V .\]
+                \item If $v_1, \ldots, v_m$ is linearly independent, means 
+                    \[ \Null{T} = \{0\} .\]
+            \end{enumerate}
+        \end{solution}
+    \item Show taht 
+        \[ \{T \in \lmap{\R^5}{\R^4}: \dim{\Null{T}} > 2 \} \]
+        is not subspace of $\lmap{\R^5}{\R^4}$.
+        \begin{solution}
+            Consider the linear maps $T_1, T_2 \in \lmap{\R^5}{\R^4}$ defined by 
+            \[ T_1(x_1, x_2, x_3, x_4, x_5) = (0,0,x_3,x_4),\qquad T_2(x_1,x_2,x_3,x_4,x_5) = (0,0,-x_3,x_4) ,\]
+            they are both linear maps, and 
+            \[ \dim{\Null{T_1}} = \dim{\Null{T_2}} = 3 > 2,\]
+            but we have 
+            \[ (T_1 + T_2) (x_1, x_2, x_3, x_4, x_5) = (0,0,0,x_4) \]
+            means 
+            \[ \dim{\Null{(T_1 + T_2)}} = 2 \]
+            which is not in this set, \ie, it is not a subspace.
+        \end{solution}
+    \item Give an example of a linear map $T: \R^4 \to \R^4$ such that 
+        \[ \range{T} = \Null{T} .\]
+        \begin{solution}
+            Consider the function $T: \R^4 \to \R^4$ defined by 
+            \[ T(x_1,x_2, x_3, x_4) = (0,0,x_1,x_2) .\]
+            We will show that $T$ satisfies the conditions: 
+
+            It is easy to verify that $T$ is a linear map. And we have 
+            \[ \range{T} = \{(0,0,x,y) \in \R^4: x,y \in \R \}, \]
+            also we have 
+            \[ \Null{T} = \{(0,0,x,y) \in \R^4: x,y \in \R \} ,\]
+            \ie, 
+            \[ \range{T} = \Null{T}. \]
+        \end{solution}
+    \item Prove that there does not exist a linear map $T: \R^5 \to \R^5$ such that 
+        \[ \range{T} = \Null{T}. \]
+        \begin{solution}
+            Assume that $T$ is such a linear map, according to Fundamental Theorem we have 
+            \[ 5 = \dim{\range{T}} + \dim{\Null{T}},\]
+            and since $\range{T} = \Null{T}$, implies 
+            \[ \dim{\range{T}} = \dim{\Null{T}}, \]
+            \ie, 
+            \[ \dim{\range{T}} = \dim{\Null{T}} = 2.5, \]
+            which is impossible since the dimension of vector space should be integer.
+        \end{solution}
+    \item Suppose $V$ and $W$ are finite-dimensional with $2 \leq \dim{V} \leq \dim{W}$. Show that 
+        $\{ T \in \lmap{V}{W} : T \text{ is not injective}\}$ is not a subspace of $\lmap{V}{W}$.
+        \begin{solution}
+            Suppose $\dim{V} = n$, and $v_1, \ldots, v_m$ is a basis of $V$, since $\dim{W} \geq \dim{V}$, there exists
+            linearly independence list $w_1, \ldots, w_n \in W$, we define the function $T_1: V \to W$ by 
+            \[ T_1v_1=w_1,\ \ldots,\ T_1v_{n-1}=w_{n-1},\ T_1v_n = 0, \]
+            and $T_2 : V \to W$ by 
+            \[ T_2v_1 = w_1,\ \ldots,\ T_2v_{n-1} = 0,\ T_2v_n = w_n .\]
+            For $T_1$ we have 
+            \[ T_1(0) = 0, \qquad T_1(v_n) = 0, \]
+            means $T_1$ is not injective, with same method we have $T_2$ is not injective, now we consider $T_1 + T_2$, for 
+            any element in $V$, denoted by $v = a_1v_1 + \dots + v_n$, we have 
+            \begin{align*}
+                (T_1+T_2)(v) &= T_1v + T_2v \\
+                             &= T_1(a_1v_1 + \dots + a_nv_n) + T_2(a_1v_1+\dots+a_nv_n) \\
+                             &= 2a_1w_1 + \ldots + 2a_{n-2}w_{n-2} + a_{n-1}w_{n-1} + a_nw_n.
+            \end{align*}
+            Since $w_1, \ldots, w_n$ is linearly independent, means the solution of 
+            \[ (T_1+T_2)(v) = 0\]
+            has only one solution 
+            \[ v = 0,\]
+            \ie, linear map $T_1 + T_2$ is injective, which means the set is not closed under addition, thus it is not subspace.
+        \end{solution}
+    \item Suppose $V$ and $W$ are finite-dimensional with $\dim{V} \geq \dim{W} \geq 2$. Show that 
+        $\{ T \in \lmap{V}{W}: T \text{ is not surjective} \}$ is not a subspace of $\lmap{V}{W}$.
+        \begin{solution}
+            This question is quite similar with the one above, suppose that $\dim{V}=n$ and $v_1, \ldots, v_n$ is a basis of 
+            $V$, and $\dim{W} = m$, $w_1, \ldots, w_m$ is a basis of $W$. 
+            $T_1, T_2 \in \lmap{V}{W}$ which defined by
+            \[ T_1(a_1v_1 + \dots + a_nv_n) = a_1w_1 + a_3w_3 + \dots + a_mw_m,\]
+            and 
+            \[ T_2(a_1v_1 + \dots + a_nv_n) = a_2w_2 + a_3w_3 + \dots + a_mw_m,\]
+            where $a_1,\ldots, a_n \in \F$ are arbitrary.
+
+            It is easy to verify that 
+            \[ w_2 \notin \range{T_1}, \qquad w_1 \notin \range{T_2}, \]
+            \ie, $T_1, T_2$ are not surjective.
+
+            But for $T_1+T_2$, we have 
+            \[ (T_1+T_2)(a_1v_1 + \dots + a_nv_n) = a_1w_1 + a_2w_2 + 2a_3w_3 + \dots + 2a_mw_m ,\]
+            since $w_1, \ldots, w_m$ is a basis of $W$, implies that $T_1 + T_2$ is surjective, which means the vector space defined 
+            in question is not closed under addition, \ie, it is not a subspace.
+        \end{solution}
+    \item \hypertarget{3B-9}{Suppose} $T \in \lmap{V}{W}$ is injective and $v_1, \ldots, v_n$ is linearly independent in $V$.
+        Prove that $Tv_1, \ldots, Tv_n$ is linearly independent in $W$.
+        \begin{solution}
+            Assume that $Tv_1, \ldots, Tv_n$ is linearly dependent, implies there are nonzero $a_1, \ldots, a_n \in \F$ with 
+            \[ a_1Tv_1 + \dots + a_nTv_n = 0,\]
+            as we have 
+            \begin{align*}
+                a_1Tv_1 + \dots + a_nTv_n &= T(a_1v_1) + \dots + T(a_nv_n) \\
+                                          &= T(a_1v_1 + \dots + a_nv_n) ,
+            \end{align*}
+            \ie, 
+            \[ T(a_1v_1 + \dots + a_nv_n) = 0, \]
+            since $T$ is injective, means 
+            \[ a_1v_1 + \dots + a_nv_n = 0,\]
+            with $v_1, \ldots, v_n$ is linearly independent, implies
+            \[ a_1 = \dots = a_n = 0, \]
+            which is contradict with our assumption.
+        \end{solution}
+    \item Suppose $v_1, \ldots, v_n$ spans $V$ and $T \in \lmap{V}{W}$. Prove that the list $Tv_1, \ldots, Tv_n$ spans $\range{T}$.
+        \begin{solution}
+            This question is equivalent to prove that 
+            \[ \mspan{Tv_1, \ldots, Tv_n} = \range{T} .\]
+            First we show that 
+            \[ \mspan{Tv_1, \ldots, Tv_n} \subseteq \range{T} ,\]
+            suppose $w \in \mspan{Tv_1, \ldots, Tv_n}$, implies $w$ can be written in 
+            \[ w = a_1Tv_1 + \dots + a_nTv_n,\]
+            here $a_1, \ldots, a_n \in \F$, which means 
+            \begin{align*}
+                w &= a_1Tv_1 + \dots + a_nTv_n \\
+                  &= T(a_1v_1) + \dots + T(a_nv_n) \\
+                  &= T(a_1v_1 + \dots + a_nv_n),
+            \end{align*}
+            since $v_1, \ldots, v_n$ spans $V$, means there exists $v \in V$ with 
+            \[ v = a_1v_1 + \dots + a_nv_n,\]
+            \ie, we have 
+            \[ w = T(v) ,\]
+            means 
+            \[ w \in \range{T} .\]
+
+            Second we show that 
+            \[ \range{T} \subseteq \mspan{Tv_1, \ldots, Tv_n} ,\]
+            suppose $w \in \range{T}$ with $w = T(v), v \in V$, since $v_1, \ldots, v_n$ spans $V$, we can form $v$ as 
+            \[ v = a_1v_1 + \dots + a_nv_n, \]
+            where $a_1, \ldots, a_n \in \F$, therefore 
+            \begin{align*}
+                w &= Tv \\
+                  &= T(a_1v_1 + \dots + a_nv_n) \\
+                  &= T(a_1v_1) + \dots + T(a_nv_n) \\
+                  &= a_1Tv_1 + \dots + a_nTv_n,
+            \end{align*}
+            \ie,
+            \[ w \in \mspan{Tv_1, \ldots, Tv_n}.\]
+
+            Thus we conclude that 
+            \[ \mspan{Tv_1, \ldots, Tv_n} = \range{T} .\]
+        \end{solution}
+    \item Suppose $S_1, \ldots, S_n$ are injective linear maps such that $S_1S_2\dots S_n$ makes sense. Prove that $S_1S_2\dots S_n$ is injective.
+        \begin{solution}
+            Assume that $S_1S_2\dots S_n$ is not injective, means there exists $u \neq 0$ with 
+            \[ S_1S_2\dots S_nu = 0, \]
+            since 
+            \[ S_1S_2\dots S_nu = S_1(S_2\dots S_nu) \]
+            and $S_1$ is injective, implies 
+            \[ S_2\dots S_nu = 0,\]
+            continue this iteration, we conclude that 
+            \[ S_nu = 0 \]
+            which is contradict since $S_n$ is injective.
+        \end{solution}
+    \item Suppose that $V$ is finite-dimensional and that $T \in \lmap{V}{W}$. Prove that there exists a subspace $U$ of $V$ such that 
+        $U \cap \Null{T} = \{0\}$ and $\range{T} = \{Tu: u \in U\}$.
+        \begin{solution}
+            Since $V$ is finite-dimensional, suppose $\dim{\Null{T}} = m$, and
+            $v_1,\ldots,v_m$ is a basis of $\Null{T}$, since $v_1, \ldots, v_m$ is linearly independent list of 
+            $V$, it can be extended to be a basis of $V$, suppose that 
+            \[ v_1, \ldots, v_m, u_1, \ldots, u_n\] 
+            to be the extended basis of $V$, \ie, $\dim{V} = n+m$.
+
+            Now consider subspace $U$ obtained by 
+            \[ U = \mspan{u_1, \ldots, u_n}. \]
+
+            It is easy to verify that $U \cap \Null{T} = \{0\}$ since $v_1, \ldots, v_m, u_1, \ldots, u_n$ is linearly independent.
+            Now we will show that $Tu_1, \ldots, Tu_n$ is linearly independent, or we have nonzero $a_1, \ldots, a_n \in \F$ with 
+            \[ a_1Tu_1 + \dots + a_nTu_n = 0,\]
+            implies that 
+            \[ T(a_1u_1 + \dots + a_nu_n) = 0, \]
+            means 
+            \[ a_1u_1 + \dots + a_nu_n \in \Null{T}, \]
+            and with $v_1, \ldots, v_m$ is basis of $\Null{T}$, we have 
+            \[ a_1u_1 + \dots + a_nu_n = b_1v_1 + \dots + b_mv_m, \]
+            since $v_1, \ldots, v_m, u_1, \ldots, u_n$ is linearly independent, we have 
+            \[ a_1 = \dots = a_n = 0,\]
+            which is contradict.
+
+            From above we have $Tu_1, \ldots, Tu_n \in \range{T}$ is linearly independent, and with Fundamental Theorem we have 
+            \[ \dim{\range{T}} = \dim{V} - \dim{\Null{T}} = n, \]
+            which means $Tu_1, \ldots, Tu_n$ is a basis of $\range{T}$, \ie, 
+            \[ \range{T} = \mspan{Tu_1, \ldots, Tu_n}, \]
+            since $\mspan{Tu_1, \ldots, Tu_n} = \{Tu: u \in U\}$ we have 
+            \[ \range{T} = \{Tu: u \in U\} .\]
+        \end{solution}
+    \item Suppose $T$ is a linear map from $\F^4$ to $\F^2$ such that
+        \[ \Null{T} = \{(x_1,x_2,x_3,x_4) \in \F^4: x_1=5x_2 \text{ and } x_3 = 7x_4 \}. \]
+        Prove that $T$ is surjective.
+        \begin{solution}
+            We know that 
+            \[ (5,1,0,0), \qquad (0,0,7,1)\]
+            is a basis of $\Null{T}$, means 
+            \[ \dim{\Null{T}} = 2, \]
+            with $\dim{\F^4} = 4$ and Fundamental Theorem we have 
+            \[ \dim{\range{T}} = 4 - 2 = 2,\]
+            since $\dim{\F^2}=2$, and $\range{T} \subseteq \F^2$, we have 
+            \[ \range{T} = \F^2, \]
+            \ie, it is surjective.
+        \end{solution}
+    \item Suppose $U$ is a $3$-dimensional subspace of $\R^8$ and that $T$ is a linear map from $\R^8$ to $\R^5$
+        such that $\Null{T} = U$. Prove that $T$ is surjective.
+        \begin{solution}
+            This is similar to the question above, we can use the same method to prove it, with Fundamental Theorem we have 
+            \[ \dim{\range{T}} = \dim{\R^8} - \dim{\Null{T}} = 8 - 3 = 5, \]
+            and since 
+            \[ \range{T} \subseteq \R^5, \qquad \dim{\range{T}} = \dim{\R^5} \]
+            we have 
+            \[ \range{T} = \R^5 .\]
+            Or there is an element with $u \in \R^5$ and $u \notin \range{T}$, mean $u$ and the basis of $\range{T}$ is linearly independent,
+            implies that the dimension of $\R^5$ is greater than 5, which is contradict.
+        \end{solution}
+    \item Prove that there does not exist a linear map from $\F^5$ to $\F^2$ whose null space equals
+        \[ \{ (x_1, x_2, x_3, x_4, x_5) \in \F^5: x_1 = 3x_2 \text{ and } x_3 = x_4 = x_5 \}.\]
+        \begin{solution}
+            We can figure out that 
+            \[ (3,1,0,0,0), \qquad (0,0,1,1,1) \]
+            is a basis of the vector space above.
+
+            Assume that such linear map $T$ exists, we have 
+            \[ \dim{\Null{T}} = 2, \]
+            with Fundamental Theorem we have 
+            \[ \dim{\range{T}} = \dim{\F^5} - \dim{\Null{T}} = 5 - 2 = 3 ,\]
+            since $\range{T} \subseteq \F^2$, implies 
+            \[ \dim{\range{T}} \leq \dim{\F^2} = 2, \]
+            thus, there is no such linear map.
+        \end{solution}
+    \item Suppose there exist a linear map on $V$ whose null space and range are both finite-dimensional. Prove 
+        that $V$ is finite-dimensional.
+        \begin{solution}
+            With Fundamental Theorem we have 
+            \[ \dim{V} = \dim{\Null{T}} + \dim{\range{T}} ,\]
+            \ie, $V$ is finite-dimensional.
+        \end{solution}
+    \item Suppose $V$ and $W$ are both finite-dimensional. Prove that there exists an injective linear map from 
+        $V$ to $W$ if and only if $\dim{V} \leq \dim{W}$.
+        \begin{solution}
+            First we show that if $\dim{V} \leq \dim{W}$, then such linear map exists:
+            Since both $V$ and $W$ are finite-dimensional, suppose that $v_1, \ldots, v_n$ is a basis of $V$, 
+            and with $\dim{V} \leq \dim{W}$, we know there exist a linearly independent list $w_1,\ldots,w_n \in W$,
+            consider the function $T \in \lmap{V}{W}$ defined by 
+            \[ T(a_1v_1 + \dots + a_nv_n) = a_1w_1 + \dots + a_nw_n ,\]
+            where $a_1, \ldots, a_n \in \F$ are arbitrary.
+
+            Since $w_1, \ldots, w_n$ is linearly independent, means 
+            \[ a_1w_1 + \dots + a_nw_n = 0\]
+            holds only when $a_1=\dots=a_n=0$, \ie,
+            \[ \Null{T} = \{0\},\]
+            means $T$ is injective.
+
+            The reverse is obviously since from the conclusion of the textbook, we know that when $\dim{V} > \dim{W}$, there 
+            is no injective linear map from $V$ to $W$.
+        \end{solution}
+    \item Suppose $V$ and $W$ are both finite-dimensional. Prove that there exists a surjective linear map from 
+        $V$ onto $W$ if and only if $\dim{V} \geq \dim{W}$.
+        \begin{solution}
+            This is quite similar to the previous one, suppose that $w_1, \ldots, w_m$ is the basis of $W$, and 
+            $v_1, \ldots, v_n$ is the basis of $V$, since we have $m \leq n$, consider the linear map $T \in \lmap{V}{W}$ defined by 
+            \[ T(a_1v_1 + \dots + a_nv_n) = a_1w_1 + \dots + a_mw_m ,\]
+            where $a_1, \ldots, a_n \in \F$ are arbitrary.
+
+            Since 
+            \[ \mspan{w_1, \ldots, w_m} = W,\]
+            we have 
+            \[ \range{T} = W,\]
+            \ie, $T$ is surjective.
+        \end{solution}
+    \item Suppose $V$ and $W$ are finite-dimensional and that $U$ is subspace of $V$. Prove that there exists $T \in \lmap{V}{W}$ such that 
+        $\Null{T} = U$ if and only if $\dim{U} \geq \dim{V} - \dim{W}$.
+        \begin{solution}
+            First we show that if $\dim{U} \geq \dim{V} - \dim{W}$, then such linearly map $T$ exist, suppose that $u_1, \ldots, u_m$ is a basis of $U$,
+            since $U \subseteq V$, means that $u_1,\ldots, u_m$ can be extended to be a basis of $V$, suppose the extended basis of $V$ is 
+            \[ u_1, \ldots, u_m, v_1, \ldots, v_n ,\] 
+            therefore we have 
+            \[ \dim{U} = m, \qquad \dim{V} = m+n,\]
+            means 
+            \[ \dim{W} \geq \dim{V} - \dim{U} = m+n-m = n.\]
+            Therefore there are linearly independent list $w_1, \ldots, w_n \in W$, consider the linear map $T \in \lmap{V}{W}$ defined by
+            \[ T(a_1u_1+\dots+a_mu_m+b_1v_1+\dots+b_nv_n) = b_1w_1 + \dots + b_nw_n, \]
+            where $a_1,\ldots,a_m,b_1,\ldots,b_n \in \F$ are arbitrary.
+
+            Let 
+            \[ b_1w_1 + \dots + b_nw_n = 0, \]
+            implies that 
+            \[ b_1 = \dots =b_n = 0,\]
+            means 
+            \[ \Null{T} = \mspan{u_1, \ldots, u_m} = U. \]
+
+            Seconde we show the reverse: if $\dim{U} < \dim{V} - \dim{W}$, then there is no such linear map:
+            according to Fundamental Theorem we have 
+            \begin{align*}
+                \dim{\Null{T}} &= \dim{V} - \dim{\range{T}}\\
+                               &> \dim{V} - \dim{W}\\
+                               &> \dim{U},
+            \end{align*}
+            means there is no $T \in \lmap{V}{W}$ that $\Null{T} = U$.
+        \end{solution}
+    \item Suppose $W$ is finite-dimensional and $T \in \lmap{V}{W}$. Prove that $T$ is injective if and only if there exists $S \in \lmap{W}{V}$ 
+        such that $ST$ is the identity map on $V$.
+        \begin{solution}
+            First, we will show that if $T$ is injective, then such $S$ exists: since $T$ is injective, then $\dim{V} \leq \dim{W}$, suppose that 
+            $v_1, \ldots, v_n$ is a basis of $V$, according to exercise \hyperlink{3B-9}{3B-9}, we know that 
+            \[ Tv_1, \ldots, Tv_n \]
+            is linearly independent in $W$, which means it can extend to be a basis of $W$, suppose the extended basis is 
+            \[ Tv_1, \ldots, Tv_n, w_1, \ldots, w_m \]
+            consider the function $S \in \lmap{W}{V}$ defined by 
+            \[ S(a_1Tv_1 + \dots + a_nTv_n + b_1w_1 + \dots + b_mw_m) = a_1v_1 + \dots + a_nv_n ,\]
+            where $a_1,\ldots, a_n,b_1,\ldots,b_m \in \F$ are arbitrary. For any $v \in V$, we can form $v$ as 
+            \[ v = a_1v_1 + \dots + a_nv_n, \] 
+            therefore 
+            \begin{align*}
+                STv &= ST(a_1v_1 + \dots + a_nv_n) \\
+                    &= S(Ta_1v_1 + \dots + Ta_nv_n) \\
+                    &= S(a_1Tv_1 + \dots + a_nTv_n) \\
+                    &= a_1v_1 + \dots + a_nv_n \\
+                    &= v,
+            \end{align*}
+            \ie, $ST$ is identity map on $V$.
+
+            Second, we will show the reverse direction: If $ST$ is identity then $T$ is injective, or, assume that $u \neq 0$ with 
+            \[ Tu = 0, \]
+            we have 
+            \[ STu = S0 = 0,\]
+            but since $ST$ is identity map, we have 
+            \[ STu = u,\]
+            implies that
+            \[ u = 0, \]
+            which is contradict to our assumption.
+        \end{solution}
+    \item Suppose $W$ is finite-dimensional and $T \in \lmap{V}{W}$. Prove that $T$ is surjective if and only if there exists $S \in \lmap{W}{V}$ 
+        such that $TS$ is the identity map on $W$.
+        \begin{solution}
+            First, we will show that if $T$ is surjective, then such $S$ exists: Suppose $w_1, \ldots, w_n$ is a basis of $W$, since $T$ is surjective, 
+            means we can find $v_1, \ldots, v_n \in V$ that 
+            \[ Tv_i = w_i, \qquad i=1, \ldots, n,\]
+            Consider the function $S \in \lmap{W, V}$ defined by 
+            \[ S(a_1w_1 + \dots + a_nw_n) = a_1v_1 + \dots + a_nv_n ,\]
+            where $a_1, \ldots, a_n \in \F$ are arbitrary. Now for any $w \in W$, we can form $w$ as 
+            \[ w = a_1w_1 + \dots + a_nw_n,\]
+            then 
+            \begin{align*}
+                TSw &= TS(a_1w_1 + \dots + a_nw_n) \\
+                    &= T(a_1v_1 + \dots + a_nv_n) \\
+                    &= Ta_1v_1 + \dots + Ta_nv_n \\
+                    &= a_1Tv_1 + \dots + a_nTv_n \\
+                    &= a_1w_1 + \dots + a_nw_n \\
+                    &= w,
+            \end{align*}
+            \ie, $TS$ is identity map on $W$.
+
+            Second, we will show the reverse direction: Assume that $T$ is not surjective, means that there is $w \in W$, that $w \notin \range{T}$,
+            but we have 
+            \[ T(Sw) = w, \qquad Sw \in V,\]
+            means 
+            \[ w \in \range{T}, \]
+            which is contradict.
+        \end{solution}
+    \item Suppose $U$ and $V$ are finite-dimensional vector spaces and $S \in \lmap{V}{W}$ and $T \in \lmap{U}{V}$. Prove that 
+        \[ \dim{\Null{ST}} \leq \dim{\Null{S}} + \dim{\Null{T}} .\]
+        \begin{solution}
+            Suppose that $u_1, \ldots, u_n$ is a basis of $\Null{T}$, it is easy to verify that $u_i \in \Null{ST}$ for $i=1,\dots,n$ 
+            since 
+            \[ STu_i = S0 = 0, \qquad i=1,\ldots,n ,\]
+            therefore it can extended to be a basis of $\Null{ST}$, suppose to be 
+            \[ u_1, \ldots, u_n, v_1, \ldots, v_m .\]
+            Now we will show that $Tv_i \in \Null{S}$ for $i=1,\ldots,m$ and $Tv_1, \ldots, Tv_n$ is linearly independent:
+            Obviously that $Tv_i \in \Null{S}$ since 
+            \[ STv_i = S(Tv_i) = 0,\]
+            assume the list is not linearly independent, means there exists nonzero $a_1, \ldots, a_m \in \F$ with 
+            \[ a_1Tv_1 + \dots + a_mTv_m = 0, \]
+            since 
+            \[ a_1Tv_1 + \dots + a_mTv_m = T(a_1v_1 + \dots + a_mv_m ),\]
+            means 
+            \[ a_1v_1 + \dots + a_mv_m \in \Null{T} ,\]
+            and with $u_1, \ldots, u_n$ is a basis of $\Null{T}$, means there exists $b_1, \ldots, b_n \in \F$ that 
+            \[ a_1v_1 + \dots + a_mv_m = b_1u_1 + \dots + b_nu_n ,\]
+            and with $u_1, \ldots, u_n, v_1, \ldots, v_m$ is linearly independent, we have 
+            \[ a_1 = \dots = a_m = b_1 = \dots = b_n = 0 ,\]
+            which is a contradict, therefore $Tv_1, \ldots, Tv_m$ is linearly independent in $\Null{S}$, 
+            \[ m \leq \dim{\Null{S}}, \]
+            with $\dim{\Null{ST}} = n + m$ and $\dim{\Null{T}} = n$ we have 
+            \[ \dim{\Null{ST}} \leq \dim{\Null{T}} + \dim{\Null{S}}.\]
+        \end{solution}
+    \item Suppose $U$ and $V$ are finite-dimensional vector space and $S \in \lmap{V}{W}$ and $T \in \lmap{U}{V}$. Prove that 
+        \[ \dim{\range{ST}} \leq \min{\{ \dim{\range{S}}}, \dim{\range{T}} \}.\]
+        \begin{solution}
+            First we will show that 
+            \[ \dim{\range{ST}} \leq \dim{\range{S}}, \]
+            this is easy, since the basis of $\range{ST}$ must be linearly independent in $\range{S}$, therefore the inequality holds.
+
+            Second we will show that 
+            \[ \dim{\range{ST}} \leq \dim{\range{T}} ,\]
+            suppose that $u_1, \ldots, u_n$ is basis of $\range{T}$, we will show that $Su_1, \ldots, Su_n$ spans $\range{S}$, for 
+            any $s \in \range{ST}$, suppose that 
+            \[ s = STu, u \in U ,\]
+            since $Tu \in \range{T}$, we can form it as 
+            \[ Tu = a_1u_1 + \dots + a_nu_n, \]
+            here $a_1, \ldots, a_n \in \F$, therefore above equation can be written as 
+            \begin{align*}
+                s &= STu \\
+                  &= S(a_1u_1 + \dots + a_nu_n) \\
+                  &= a_1Su_1 + \dots + a_nSu_n,
+            \end{align*}
+            which means any $s \in \range{ST}$ can be formed as a linear combination of $Su_1, \ldots, Su_n$, \ie, $Su_1, \ldots, Su_n$ spans 
+            $\range{ST}$, therefore it can be reduced to be a basis of $\range{TS}$, means 
+            \[ \dim{\range{ST}} \leq n = \range{T} .\]
+        \end{solution}
+    \item Suppose $W$ is finite-dimensional and $T_1, T_2 \in \lmap{V}{W}$. Prove that $\Null{T_1} \subset \Null{T_2}$ if and only if there exists 
+        $S \in \lmap{W}{W}$ such that $T_2 = ST_1$.
+        \begin{solution}
+            First we will show that if $\Null{T_1} \subset \Null{T_2}$, then such linear map $S$ exists:
+            suppose $u_1, \ldots, u_n$ is basis of $\Null{T_1}$, since $\Null{T_1} \subset \Null{T_2}$, means $u_1, \ldots, u_n$ is 
+            linearly independent in $\Null{T_2}$, it can extended to be a basis of $\Null{T_2}$, suppose to be 
+            \[ u_1, \ldots, u_n, v_1, \ldots, v_m, \]
+            this list can be extended to be a basis of $U$, suppose to be 
+            \[ u_1, \ldots, u_n, v_1, \ldots, v_m, s_1,\ldots, s_p \]
+            we will show that 
+            \[ T_1v_1, \ldots, T_1v_m, T_1s_1, \ldots, T_1s_p  \]
+            is linearly independent in $W$, obviously that $T_1v_i \in W$ for $i = 1, \ldots, m$ and $T_1s_i \in W$ for $i = 1,\ldots, p$,
+            assume that it is not linearly independent, 
+            we have nonzero $a_1, \ldots, a_m, b_1, \ldots, b_p \in \F$ with 
+            \[ a_1T_1v_1 + \dots + a_mT_1v_m  + b_1T_1s_1 + \dots + b_pT_1s_p = 0, \]
+            since 
+            \[ a_1T_1v_1 + \dots + a_mT_1v_m + b_1T_1s_1 + \dots + b_pT_1s_p = T_1(a_1v_1 + \dots + a_mv_m + b_1s_1 + \dots + b_ps_p) = 0, \]
+            means 
+            \[ a_1v_1 + \dots + a_mv_m + b_1s_1 + \dots + b_ps_p \in \Null{T_1}, \]
+            with $u_1, \ldots, u_n$ is a basis of $\Null{T_1}$, we have 
+            \[ a_1T_1v_1 + \dots + a_mT_1v_m + b_1s_1 + \dots + b_ps_p = c_1u_1 + \dots + c_nu_n ,\]
+            with $u_1, \ldots, u_n, v_1, \ldots, v_m, s_1, \ldots, s_p$ is linearly independent, we have
+            \[ a_1 = \dots = a_m = b_1 = \dots = b_p = 0,\]
+            which is contradict, therefore $T_1v_1, \ldots, T_1v_m, T_1s_1, \ldots, T_1s_p$ is linearly independent in $W$, 
+            implies it can extended to be a basis of $W$, 
+            suppose the basis to be 
+            \[ T_1v_1, \ldots, T_1v_m, T_1s_1, \ldots, T_1s_p, w_1, \ldots, w_k ,\]
+            consider the function $S: W \to W$ defined by 
+            \begin{align*}
+                &S(a_1T_1v_1 + \dots + a_mT_1v_m + b_1T_1s_1 + \dots + b_pT_1s_p + c_1w_1 + \dots + c_kw_k) \\
+                &\qquad = b_1T_2s_1 + \dots + b_pT_2s_p + c_1w_1 + \dots + c_kw_k
+            \end{align*}
+            it is easy to verify that $S \in \lmap{W}{W}$, now we will show that 
+            \[ T_2 = ST_1 ,\]
+            for $u \in U$. we can form $u$ as 
+            \[ u = a_1u_1 + \dots + a_nu_n + b_1v_1 + \dots + b_mv_m + \dots + c_1s_1 + \dots + c_ps_p ,\]
+            therefore 
+            \begin{align*}
+                T_2u &= T_2(a_1u_1 + \dots + a_nu_n + b_1v_1 + \dots + b_mv_m + \dots + c_1s_1 + \dots + c_ps_p) \\
+                     &= T_2(c_1s_1 + \dots + c_ps_p),
+            \end{align*}
+            and 
+            \begin{align*}
+                ST_1u &= ST_1(a_1u_1 + \dots + a_nu_n + b_1v_1 + \dots + b_mv_m + \dots + c_1s_1 + \dots + c_ps_p) \\
+                        &= S(b_1T_1v_1 + \dots + b_mT_1v_m + c_1T_1s_1 + \dots + c_pT_1s_p) \\
+                        &= c_1T_2s_1 + \dots + c_pT_2s_p \\
+                        &= T_2(c_1s_1 + \dots + c_ps_p),
+            \end{align*}
+            which means 
+            \[ T_2 = ST_1 .\]
+
+            Now we will show it in the reverse direction: If $T_2 = ST_1$, then for any $u \in \Null{T_1}$, we have 
+            \[ T_2u = ST_1u = S0 = 0,\]
+            means 
+            \[ u \in \Null{T_2}, \]
+            \ie, $\Null{T_1} \subset \Null{T_2}$.
+        \end{solution}
+    \item Suppose $V$ is finite-dimensional and $T_1,T_2 \in \lmap{V}{W}$. Prove that $\range{T_1} \subset \range{T_2}$ if and only if 
+        there exists $S \in \lmap{V}{V}$ such that $T_1 = T_2S$.
+    \item Suppose $D \in \lmap{\poly{\R}}{\poly{\R}}$ is such that $\deg{Dp} = (\deg{p}) - 1$ for every nonconstant polynomial $p \in \poly{\R}$.
+        Prove that $D$ is surjective.
+    \item Suppose $p \in \poly{\R}$. Prove that there exists a polynomial $q \in \poly{\R}$ such that $5q''+3q'=p$.
+    \item Suppose $T \in \lmap{V}{W}$, and $w_1, \ldots, w_m$ is a basis of $\range{T}$. Prove that there exist $\varphi_1, \ldots, \varphi_m \in \lmap{V}{\F}$
+        such that 
+        \[ Tv = \varphi_1(v)w_1 + \dots + \varphi_m(v)w_m \]
+        for every $v \in V$.
+    \item Suppose $\varphi \in \lmap{V}{\F}$. Suppose $u \in V$ is not in $\Null{\varphi}$. Prove that 
+        \[ V = \Null{\varphi} \oplus \{au: a\in \F \}. \]
+    \item Suppose $\varphi_1$ and $\varphi_2$ are linear map from $V$ to $\F$ that have the same null space. 
+        Show that there exists a constant $c \in \F$ such that $\varphi_1 = c\varphi_2$.
+    \item Give an example of two linear maps $T_1$ and $T_2$ from $\R^5$ to $\R^2$ that have the same null space but are 
+        such that $T_1$ is not a scalar multiple of $T_2$. 
+\end{enumerate}
